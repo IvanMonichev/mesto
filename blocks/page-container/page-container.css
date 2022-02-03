@@ -1,4 +1,4 @@
-.page-container {
+/* .page-container {
   box-sizing: border-box;
   margin: 0 auto;
   width: calc(100% - 400px);
@@ -6,12 +6,12 @@
 
 @media screen and (max-width: 1024px) {
   .page-container {
-    width: calc(100% - 300px);
-  }
-}
-
-@media screnn and (max-width: 600px) {
-  .page-container {
     width: calc(100% - 200px);
   }
 }
+
+@media screen and (max-width: 800px) {
+  .page-container {
+    width: calc(100% - 100px);
+  }
+} */

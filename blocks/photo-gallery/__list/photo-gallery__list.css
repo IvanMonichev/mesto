@@ -13,8 +13,8 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
   .photo-gallery__list {
     grid-template-columns: 1fr;
   }
-}
+} */

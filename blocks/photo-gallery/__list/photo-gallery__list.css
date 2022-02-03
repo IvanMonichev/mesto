@@ -7,3 +7,14 @@
   gap: 20px 17px;
 }
 
+@media screen and (max-width: 1024px) {
+  .photo-gallery__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .photo-gallery__list {
+    grid-template-columns: 1fr;
+  }
+}

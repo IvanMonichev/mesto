@@ -1,11 +1,10 @@
 .photo-gallery__item {
-  max-width: 282px;
-  height: 361px;
   background-color: #ffffff;
   color: #000000;
   border-radius: 10px;
   display: grid;
   grid-template-columns: calc(100% - 65px) auto;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto 79px;
   align-items: center;
+  margin: 0 auto;
 }

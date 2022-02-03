@@ -1,0 +1,13 @@
+.photo-gallery__like-button {
+  width: 22px;
+  height: 19px;
+  padding: 0;
+  background: url(../../../images/icon-heart.svg) no-repeat center;
+  border: none;
+  cursor: pointer;
+  transition: .7s;
+}
+
+.photo-gallery__like-button:hover {
+  opacity: 0.5;
+}

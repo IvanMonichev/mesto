@@ -6,7 +6,7 @@
   border: none;
   cursor: pointer;
   justify-self: center;
-  transition: .7s;
+  transition: opacity .7s;
 }
 
 .photo-gallery__like-button:hover {

@@ -4,7 +4,6 @@
 
 /* Global block */
 @import url(../blocks/root/root.css);
-@import url(../blocks/page-container/page-container.css);
 
 /* logo */
 @import url(../blocks/logo/logo.css);

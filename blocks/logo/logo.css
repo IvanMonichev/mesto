@@ -3,7 +3,7 @@
   padding-bottom: 38px;
 }
 
-@media screen and (max-width: 825px) {
+@media screen and (max-width: 880px) {
   .logo {
     margin-left: 24px;
   }
@@ -12,5 +12,6 @@
 @media screen and (max-width: 425px) {
   .logo {
     max-width: 103px;
+    padding-bottom: 31px;
   }
 }

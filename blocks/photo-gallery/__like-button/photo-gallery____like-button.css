@@ -5,6 +5,7 @@
   background: url(../../../images/icon-heart.svg) no-repeat center;
   border: none;
   cursor: pointer;
+  justify-self: center;
   transition: .7s;
 }
 

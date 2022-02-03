@@ -5,7 +5,7 @@
   color: #000000;
   border-radius: 10px;
   display: grid;
-  grid-template-columns: calc(100% - 42px) 22px;
+  grid-template-columns: calc(100% - 65px) auto;
   grid-template-rows: 1fr 1fr;
   align-items: center;
 }

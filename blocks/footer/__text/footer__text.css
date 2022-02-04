@@ -4,3 +4,9 @@
   line-height: 1.2;
   color: #545454;
 }
+
+@media screen and (max-width: 880px) {
+  .footer__text {
+    margin-left: 19px;
+  }
+}

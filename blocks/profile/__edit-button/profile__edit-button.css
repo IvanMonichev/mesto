@@ -8,6 +8,7 @@
   border: 1px solid white;
   cursor: pointer;
   transition: opacity .7s;
+  align-self: center;
 }
 
 @media screen and (max-width: 425px) {

@@ -17,24 +17,25 @@ const openPopup = function() {
 	popupAboutInputElement.value = profileSubtitleElement.textContent;
 
 	popupElement.classList.add('popup_is-opend');
-}
+};
 
 // Функция для закрытия всплывающего окна.
 const closePopup = function() {
-	// Аннулируем все введённые значения.
+	// Аннулируем введённые значения.
 	popupNameInputElement.value = profileTitleElement.textContent;
 	popupAboutInputElement.value = profileSubtitleElement.textContent;
+	
 	popupElement.classList.remove('popup_is-opend');
-}
+};
 
 // Функция для закрытия окна по клику на затемненную область.
-const closePopupClickOnOverlay =function(event) {
+const closePopupClickOnOverlay = function(event) {
 	if (event.target !== event.currentTarget) {
-		return
+		return;
 	}
 
 	closePopup();
-}
+};
 
 // Функция для изменение значений по событию формы "Submit"
 function formSubmitHandler (evt) {

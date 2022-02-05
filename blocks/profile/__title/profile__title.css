@@ -12,6 +12,7 @@
   .profile__title {
     font-size: 27px;
     line-height: 1.22;
-    text-align: center;
+    text-align: right;
+    min-width: 189px;
   }
 }

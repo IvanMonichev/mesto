@@ -3,7 +3,7 @@
   color: #000000;
   border-radius: 10px;
   display: grid;
-  grid-template-columns: calc(100% - 65px) auto;
+  grid-template-columns: minmax(241px, 1000px) auto;
   grid-template-rows: auto 79px;
   align-items: center;
   margin: 0 auto;

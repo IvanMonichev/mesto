@@ -13,5 +13,7 @@
     font-size: 27px;
     line-height: 1.22;
     text-align: center;
+    min-width: 189px;
+    margin-left: 27px;
   }
 }

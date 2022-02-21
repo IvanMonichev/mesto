@@ -5,11 +5,9 @@
 /* Global block */
 @import url(../blocks/root/root.css);
 
-/* logo */
-@import url(../blocks/logo/logo.css);
-
 /* Header */
 @import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
 
 /* Section Profile */
 @import url(../blocks/profile/profile.css);

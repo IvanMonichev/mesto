@@ -22,8 +22,6 @@ const openPopup = function() {
 // Функция для закрытия всплывающего окна.
 const closePopup = function() {
 	// Аннулируем введённые значения.
-	popupNameInputElement.value = profileTitleElement.textContent;
-	popupAboutInputElement.value = profileSubtitleElement.textContent;
 	
 	popupElement.classList.remove('popup_is-opend');
 };
@@ -38,7 +36,7 @@ const closePopupClickOnOverlay = function(event) {
 };
 
 // Функция для изменение значений по событию формы "Submit"
-function formSubmitHandler (evt) {
+function handleProfileFormSubmit(evt) {
 	evt.preventDefault();
 
 	// Сохраняем новые значения.
@@ -48,14 +46,7 @@ function formSubmitHandler (evt) {
 }
 
 // Регистрация обработчика события по клику.
-popupFormElement.addEventListener('submit', formSubmitHandler); 
+popupFormElement.addEventListener('submit', handleProfileFormSubmit); 
 popupOpenButtonElement.addEventListener('click', openPopup);
 popupCloseButtonElement.addEventListener('click', closePopup);
 popupElement.addEventListener('click', closePopupClickOnOverlay);
-
-
-
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-
-

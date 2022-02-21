@@ -47,7 +47,6 @@ function formSubmitHandler (evt) {
 	closePopup();
 }
 
-
 // Регистрация обработчика события по клику.
 popupFormElement.addEventListener('submit', formSubmitHandler); 
 popupOpenButtonElement.addEventListener('click', openPopup);

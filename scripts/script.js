@@ -1,15 +1,17 @@
 
 // Производим выборку DOM элементов.
-const popupOpenButtonElement = document.querySelector('.profile__edit-button'); // Находим кнопку для открытия формы в DOM
-const popupElement = document.querySelector('.popup'); // Находим секцию в DOM
+const popupEditButtonElement = document.querySelector('.profile__edit-button'); // Находим кнопку для открытия формы "Редактирование профиля"
+const popupEditProfileElement = document.querySelector('.popup-edit-profile'); // Находим секцию "Редактирование профиля"
+const popupAddButtonElement = document.querySelector('.profile__add-button'); // Находим кнопку для открытия формы "Новое место"
+const popupAddCardElement = document.querySelector('.popup-add-card'); // Находим секцию "Новое место"
 const popupFormElement = document.querySelector('.popup__container');
 const profileTitleElement = document.querySelector('.profile__title');
 const profileSubtitleElement = document.querySelector('.profile__subtitle');
 
-// Находим элементы формы в DOM.
-const popupCloseButtonElement = popupElement.querySelector('.popup__close-button');
-const popupNameInputElement = popupElement.querySelector('.popup__text-input_type_name');
-const popupAboutInputElement = popupElement.querySelector('.popup__text-input_type_about');
+// Находим элементы формы "Редактирование профиля"
+const popupCloseButtonElement = popupEditProfileElement.querySelector('.popup__close-button');
+const popupNameInputElement = popupEditProfileElement.querySelector('.popup__text-input_type_name');
+const popupAboutInputElement = popupEditProfileElement.querySelector('.popup__text-input_type_about');
 
 // --- Работа с фотогралерей ---
 const photoGalleryItemTemplateContent = document.querySelector('.photo-gallery__item-template').content; // Находим содержимое шаблона элемента Photo Gallery.
@@ -50,14 +52,14 @@ const openPopup = function() {
 	popupNameInputElement.value = profileTitleElement.textContent;
 	popupAboutInputElement.value = profileSubtitleElement.textContent;
 
-	popupElement.classList.add('popup_is-opend');
+	popupEditProfileElement.classList.add('popup_is-opend');
 };
 
 // Функция для закрытия всплывающего окна.
 const closePopup = function() {
 	// Аннулируем введённые значения.
 	
-	popupElement.classList.remove('popup_is-opend');
+	popupEditProfileElement.classList.remove('popup_is-opend');
 };
 
 // Функция для закрытия окна по клику на затемненную область.
@@ -103,6 +105,7 @@ renderCards(initialCards);
 
 // Регистрация обработчика события по клику.
 popupFormElement.addEventListener('submit', handleProfileFormSubmit); 
-popupOpenButtonElement.addEventListener('click', openPopup);
+popupEditButtonElement.addEventListener('click', openPopup);
+popupAddButtonElement.addEventListener('click', openPopup);
 popupCloseButtonElement.addEventListener('click', closePopup);
-popupElement.addEventListener('click', closePopupClickOnOverlay);
+popupEditProfileElement.addEventListener('click', closePopupClickOnOverlay);

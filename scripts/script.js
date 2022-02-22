@@ -6,7 +6,8 @@ const popupEditButtonElement = document.querySelector(".profile__edit-button"); 
 const popupEditProfileElement = document.querySelector(".popup-edit-profile"); // Находим секцию "Редактирование профиля".
 const popupAddButtonElement = document.querySelector(".profile__add-button"); // Находим кнопку для открытия формы "Новое место"
 const popupAddCardElement = document.querySelector(".popup-add-card"); // Находим секцию "Новое место"
-const popupFormElement = document.querySelector(".popup__container");
+const popupEditFormElement = arrayElementPopupForm[0].querySelector(".popup__container");
+const popupAddFormElement = arrayElementPopupForm[1].querySelector(".popup__container");
 const profileTitleElement = document.querySelector(".profile__title");
 const profileSubtitleElement = document.querySelector(".profile__subtitle");
 
@@ -61,7 +62,8 @@ const initialCards = [
 const openPopup = function (event) {
   if (event.target === popupEditButtonElement) {
     popupEditProfileNameInputElement.value = profileTitleElement.textContent;
-    popupEditProfileAboutInputElement.value = profileSubtitleElement.textContent;
+    popupEditProfileAboutInputElement.value =
+      profileSubtitleElement.textContent;
     popupEditProfileElement.classList.add("popup_is-opend");
   } else if (event.target === popupAddButtonElement) {
     popupAddCardElement.classList.add("popup_is-opend");
@@ -70,7 +72,7 @@ const openPopup = function (event) {
 
 // Функция для закрытия всплывающих окон.
 const closePopup = function () {
-	// Поиск открытой формы для её закрытия.
+  // Поиск открытой формы для её закрытия.
   arrayElementPopupForm.some(function (item) {
     if (item.getAttribute("class").includes("popup_is-opend")) {
       item.classList.remove("popup_is-opend");
@@ -98,6 +100,14 @@ function handleProfileFormSubmit(evt) {
   closePopup();
 }
 
+
+function handleAddCardFormSubmit(evt) {
+  evt.preventDefault();
+  
+  const item = 'test'
+  renderCard(item);
+}
+
 // 	Функция для генерации карточек на странице
 function renderCard(item) {
   // Дублируем шаблон и записываем его в константу.
@@ -123,10 +133,11 @@ function renderCards(items) {
 renderCards(initialCards);
 
 // Регистрация обработчика события по клику.
-popupFormElement.addEventListener("submit", handleProfileFormSubmit);
+popupEditFormElement.addEventListener("submit", handleProfileFormSubmit);
+popupAddFormElement.addEventListener("submit", handleAddCardFormSubmit);
 popupEditButtonElement.addEventListener("click", openPopup);
 popupAddButtonElement.addEventListener("click", openPopup);
-arrayPopupCloseButton.forEach((item) => 
+arrayPopupCloseButton.forEach((item) =>
   item.addEventListener("click", closePopup)
 );
 arrayElementPopupForm.forEach((item) =>

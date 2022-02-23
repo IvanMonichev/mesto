@@ -94,8 +94,9 @@ function renderCard(item) {
   photoGalleryItemElement.querySelector(".photo-gallery__image").src = item.link;
   photoGalleryItemElement.querySelector(".photo-gallery__image").alt = `Фотография загруженная пользователем «${item.name}»`;
   
-  // Вешаем обработчик на элемент
+  // Вешаем обработчики на элементы
   setEventListeners(photoGalleryItemElement);
+  
   
   // Добавляем готовый элемент на страницу.
   photoGalleryListElement.prepend(photoGalleryItemElement);
@@ -123,6 +124,11 @@ function handleAddCardFormSubmit(evt) {
   closePopup();
 }
 
+function handleDelete (event) {
+  const cardElement = event.target.closest('.photo-gallery__item');
+  
+  cardElement.remove();
+}
 
 function toggleButtonLike(event) {
   
@@ -141,5 +147,5 @@ arrayElementPopupForm.forEach((item) => item.addEventListener("click", closePopu
 // Обработчик сгенерированных элементов.
 function setEventListeners(cardElement) {
   cardElement.querySelector('.photo-gallery__like-button').addEventListener('click', toggleButtonLike);
-  // cardElement.querySelector('.photo-gallery__delete-button').addEventListener('click', deleteCard);
+  cardElement.querySelector('.photo-gallery__delete-button').addEventListener('click', handleDelete);
 }

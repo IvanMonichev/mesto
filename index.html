@@ -33,7 +33,7 @@
       <ul class="photo-gallery__list">
         <template class="photo-gallery__item-template">
           <li class="photo-gallery__item">
-            <img src="" alt="Фотография загруженная пользователем «{title}»" class="photo-gallery__image">
+            <img href="" src="" alt="Фотография загруженная пользователем «{title}»" class="photo-gallery__image">
             <h2 class="photo-gallery__title"></h2>
             <button class="photo-gallery__like-button button-action"></button>
             <a class="photo-gallery__delete-button button-action"><img src="./images/trash.svg" alt="Корзина удаления"></a>
@@ -64,6 +64,13 @@
       <button class="popup__save-button button-action">Создать</button>
       <button type="button" class="popup__close-button button-action"></button>
     </form>
+  </section>
+  <section class="popup image-zoom">
+    <figure class="image-zoom__container">
+      <img class="image-zoom__image" src="https://picsum.photos/1400/1300" alt="page">
+      <figcaption class="image-zoom__caption">Lorem ipsum dolor.</figcaption>
+    </figure>
+    <button type="button" class="popup__close-button button-action"></button>
   </section>
   
   <script src="scripts/script.js"></script>

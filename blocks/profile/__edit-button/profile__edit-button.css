@@ -6,8 +6,6 @@
   width: 24px;
   height: 24px;
   border: 1px solid white;
-  cursor: pointer;
-  transition: opacity .7s;
 }
 
 @media screen and (max-width: 425px) {
@@ -15,8 +13,4 @@
     width: 18px;
     height: 18px;
   }
-}
-
-.profile__edit-button:hover {
-  opacity: 0.6;
 }

@@ -3,7 +3,6 @@
   border: none;
   padding: 0;
   margin-top: 48px;
-  cursor: pointer;
   
   background-color: #000000;
   border-radius: 2px;
@@ -14,16 +13,10 @@
   font-size: 18px;
   line-height: 1.22;
   text-align: center;
-
-  transition: opacity .7s;
 }
 
 @media screen and (max-width: 600px) {
   .popup__save-button {
     width: 238px;
   }
-}
-
-.popup__save-button:hover {
-  opacity: 0.8;
 }

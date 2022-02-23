@@ -141,4 +141,5 @@ arrayElementPopupForm.forEach((item) => item.addEventListener("click", closePopu
 // Обработчик сгенерированных элементов.
 function setEventListeners(cardElement) {
   cardElement.querySelector('.photo-gallery__like-button').addEventListener('click', toggleButtonLike);
+  // cardElement.querySelector('.photo-gallery__delete-button').addEventListener('click', deleteCard);
 }

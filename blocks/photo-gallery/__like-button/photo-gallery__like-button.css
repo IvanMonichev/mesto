@@ -5,11 +5,5 @@
   margin: 0 21px 0 0;
   background: url(../../../images/icon-heart.svg) no-repeat center;
   border: none;
-  cursor: pointer;
   justify-self: center;
-  transition: opacity .7s;
-}
-
-.photo-gallery__like-button:hover {
-  opacity: 0.5;
 }

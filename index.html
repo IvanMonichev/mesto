@@ -23,10 +23,10 @@
       <img src="./images/avatar.png" alt="Аватар профиля" class="profile__avatar">
       <div class="profile__info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button"></button>
+        <button class="profile__edit-button button-action"></button>
         <p class="profile__subtitle">Исследователь океана</p>
       </div>
-      <button class="profile__add-button"></button>
+      <button class="profile__add-button button-action"></button>
     </section>
 
     <section class="photo-gallery">
@@ -35,7 +35,8 @@
           <li class="photo-gallery__item">
             <img src="" alt="Фотография загруженная пользователем «{title}»" class="photo-gallery__image">
             <h2 class="photo-gallery__title"></h2>
-            <button class="photo-gallery__like-button"></button>
+            <button class="photo-gallery__like-button button-action"></button>
+            <a class="photo-gallery__delete-button button-action"><img src="./images/trash.svg" alt="Корзина удаления"></a>
           </li>
         </template>
       </ul>
@@ -51,8 +52,8 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <input type="text" class="popup__text-input popup__text-input_type_name" name="name" placeholder="Имя">
       <input type="text" class="popup__text-input popup__text-input_type_about" name="about" placeholder="О себе">
-      <button class="popup__save-button">Сохранить</button>
-      <button type="button" class="popup__close-button"></button> 
+      <button class="popup__save-button button-action">Сохранить</button>
+      <button type="button" class="popup__close-button"></button>
     </form>
   </section>
   <section class="popup popup-add-card">
@@ -60,8 +61,8 @@
       <h2 class="popup__title">Новое место</h2>
       <input type="text" class="popup__text-input popup__text-input_type_title" name="title" placeholder="Название">
       <input type="text" class="popup__text-input popup__text-input_type_link" name="about" placeholder="Ссылка на картинку">
-      <button class="popup__save-button">Создать</button>
-      <button type="button" class="popup__close-button"></button>
+      <button class="popup__save-button button-action">Создать</button>
+      <button type="button" class="popup__close-button button-action"></button>
     </form>
   </section>
   

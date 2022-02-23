@@ -6,8 +6,6 @@
   border: 2px solid #ffffff;
   border-radius: 2px;
   padding: 0;
-  cursor: pointer;
-  transition: opacity .7s;
 }
 
 @media screen and (max-width: 720px) {
@@ -28,8 +26,4 @@
     background-size: 16px;
     margin-top: 29px;
   }
-}
-
-.profile__add-button:hover {
-  opacity: 0.6;
 }

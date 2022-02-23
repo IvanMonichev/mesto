@@ -101,15 +101,9 @@ function handleProfileFormSubmit(evt) {
 }
 
 
-function handleAddCardFormSubmit(evt) {
-  evt.preventDefault();
-  
-  const item = 'test'
-  renderCard(item);
-}
-
 // 	Функция для генерации карточек на странице
 function renderCard(item) {
+
   // Дублируем шаблон и записываем его в константу.
   const photoGalleryItemElement =
     photoGalleryItemTemplateContent.cloneNode(true);
@@ -119,20 +113,32 @@ function renderCard(item) {
     item.name;
   photoGalleryItemElement.querySelector(".photo-gallery__image").src =
     item.link;
+  photoGalleryItemElement.querySelector(".photo-gallery__image").alt = `Фотография загруженная пользователем «${item.name}»`;
 
   // Добавляем готовый элемент на страницу.
-  photoGalleryListElement.appendChild(photoGalleryItemElement);
+  photoGalleryListElement.prepend(photoGalleryItemElement);
 }
 
 // Перебираем массив где храняться хранятся карточки и используем функцию "rednerCard" для их добавления на страницу.
 function renderCards(items) {
+
   items.forEach(renderCard);
+}
+
+// Функция для добавления карточки на сайт по событию "Submit"
+function handleAddCardFormSubmit(evt) {
+  evt.preventDefault(); 
+  const popupAddCardTitleInputElement = popupAddFormElement.querySelector('.popup__text-input_type_title');
+  const popupAddCardLinkTitleInputElement = popupAddFormElement.querySelector('.popup__text-input_type_link');
+  initialCards.push({name: popupAddCardTitleInputElement.value, link: popupAddCardLinkTitleInputElement.value});
+  renderCard(initialCards[initialCards.length - 1]);
+  closePopup();
 }
 
 // Инициализируем функцию для перебора массива.
 renderCards(initialCards);
 
-// Регистрация обработчика события по клику.
+// Регистрация обработчиков события по клику.
 popupEditFormElement.addEventListener("submit", handleProfileFormSubmit);
 popupAddFormElement.addEventListener("submit", handleAddCardFormSubmit);
 popupEditButtonElement.addEventListener("click", openPopup);

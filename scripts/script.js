@@ -19,6 +19,9 @@ const popupAddFormElement = arrayElementPopupForm[1].querySelector(".popup__cont
 const popupAddCardTitleInputElement = popupAddFormElement.querySelector(".popup__text-input_type_title");
 const popupAddCardLinkTitleInputElement = popupAddFormElement.querySelector(".popup__text-input_type_link");
 
+const popupImageZoomElement = arrayElementPopupForm[2].querySelector('.image-zoom__container');
+const popupImageElement = popupImageZoomElement.querySelector('.image-zoom__image');
+const popupCaptionElement = popupImageZoomElement.querySelector('.image-zoom__caption');
 // --- Работа с фотогралерей ---
 const photoGalleryItemTemplateElement = document.querySelector(".photo-gallery__item-template");
 // Находим содержимое шаблона элемента Photo Gallery.
@@ -130,10 +133,18 @@ function handleDelete (event) {
   cardElement.remove();
 }
 
+// Функция для возможности ставить и снимать лайки.
 function toggleButtonLike(event) {
-  
-  console.log(event.target);
   event.target.classList.toggle('photo-gallery__like-button_active');
+}
+
+function openZoomImage (event) {
+  arrayElementPopupForm[2].classList.add("popup_is-opend");
+  popupImageElement.src = event.target.getAttribute('src');
+  const textCardElement = event.target.parentNode.querySelector('.photo-gallery__title').textContent;
+  popupCaptionElement.textContent = textCardElement;
+  popupImageElement.alt = `Фотография загруженная пользователем «${textCardElement}»`;
+  
 }
 
 // Регистрация обработчиков события по клику.
@@ -148,4 +159,5 @@ arrayElementPopupForm.forEach((item) => item.addEventListener("click", closePopu
 function setEventListeners(cardElement) {
   cardElement.querySelector('.photo-gallery__like-button').addEventListener('click', toggleButtonLike);
   cardElement.querySelector('.photo-gallery__delete-button').addEventListener('click', handleDelete);
+  cardElement.querySelector('.photo-gallery__image').addEventListener('click', openZoomImage)
 }

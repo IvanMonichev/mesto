@@ -46,3 +46,4 @@
 /* image-zoom */
 @import url(../blocks/image-zoom/__image/image-zoom__image.css);
 @import url(../blocks/image-zoom/__container/image-zoom__container.css);
+@import url(../blocks/image-zoom/__figure/image-zoom__figure.css);

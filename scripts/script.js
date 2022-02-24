@@ -1,5 +1,4 @@
-// --- Работа с попапами ---
-// Производим выборку DOM элементов.
+// --- Объявление переменных ---
 const popupElements = document.querySelectorAll(".popup"); // Находим секции всех форм.
 const arrayElementPopupForm = Array.from(popupElements); // Превращаем NodeList в массив.
 const popupEditButtonElement = document.querySelector(".profile__edit-button"); // Находим кнопку для открытия формы "Редактирование профиля".
@@ -7,7 +6,6 @@ const popupEditProfileElement = document.querySelector(".popup-edit-profile"); /
 const popupAddButtonElement = document.querySelector(".profile__add-button"); // Находим кнопку для открытия формы "Новое место"
 const popupAddCardElement = document.querySelector(".popup-add-card"); // Находим секцию "Новое место"
 
-// Находим элементы форм
 const popupEditFormElement = arrayElementPopupForm[0].querySelector(".popup__container");
 const profileTitleElement = document.querySelector(".profile__title");
 const profileSubtitleElement = document.querySelector(".profile__subtitle");
@@ -22,14 +20,12 @@ const popupAddCardLinkTitleInputElement = popupAddFormElement.querySelector(".po
 const popupImageZoomElement = arrayElementPopupForm[2].querySelector('.image-zoom__container');
 const popupImageElement = popupImageZoomElement.querySelector('.image-zoom__image');
 const popupCaptionElement = popupImageZoomElement.querySelector('.image-zoom__caption');
-// --- Работа с фотогралерей ---
+
 const photoGalleryItemTemplateElement = document.querySelector(".photo-gallery__item-template");
 // Находим содержимое шаблона элемента Photo Gallery.
 const photoGalleryListElement = document.querySelector(".photo-gallery__list");
 
-
-
-// Создаём массив для хранения параметров карточек.
+// Создаём ассоциативный массив для хранения параметров карточек.
 const initialCards = [{
   name: "Карелия", link: "./images/photo-1.jpg",
 }, {
@@ -44,20 +40,23 @@ const initialCards = [{
   name: "Кисловодск", link: "./images/photo-6.jpg",
 },];
 
-// Функция для открытия всплывающего окна.
+// Функция для открытия попапа.
 const openPopup = function (event) {
+  // Устанавливаем зависимость открытия попапа от кнопки.
   if (event.target === popupEditButtonElement) {
+    // Корректируем поля.
     popupEditProfileNameInputElement.value = profileTitleElement.textContent;
     popupEditProfileAboutInputElement.value = profileSubtitleElement.textContent;
     popupEditProfileElement.classList.add("popup_is-opend");
   } else if (event.target === popupAddButtonElement) {
-    popupAddCardElement.classList.add("popup_is-opend");
+    // Корректируем поля.
     popupAddCardTitleInputElement.value = '';
     popupAddCardLinkTitleInputElement.value = '';
+    popupAddCardElement.classList.add("popup_is-opend");
   }
 };
 
-// Функция для закрытия всплывающих окон.
+// Функция для закрытия попапа.
 const closePopup = function () {
   // Поиск открытой формы для её закрытия.
   arrayElementPopupForm.some(function (item) {
@@ -68,7 +67,7 @@ const closePopup = function () {
   });
 };
 
-// Функция для закрытия окна по клику на затемненную область.
+// Функция для закрытия попапа по клику на затемненную область.
 const closePopupClickOnOverlay = function (event) {
   if (event.target !== event.currentTarget) {
     return;
@@ -77,7 +76,7 @@ const closePopupClickOnOverlay = function (event) {
   closePopup();
 };
 
-// Функция для изменение значений по событию формы "Submit"
+// Функция для изменение значений по событию попапа "EditProfile" "Submit"
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
@@ -96,16 +95,13 @@ function renderCard(item) {
   photoGalleryItemElement.querySelector(".photo-gallery__title").textContent = item.name;
   photoGalleryItemElement.querySelector(".photo-gallery__image").src = item.link;
   photoGalleryItemElement.querySelector(".photo-gallery__image").alt = `Фотография загруженная пользователем «${item.name}»`;
-  
-  // Вешаем обработчики на элементы
+
+  // Вешаем обработчики на сгенерированный элемент
   setEventListeners(photoGalleryItemElement);
-  
-  
+
   // Добавляем готовый элемент на страницу.
   photoGalleryListElement.prepend(photoGalleryItemElement);
   // Добавляем обработчик события для кнопки "button".
-  
-  
 }
 
 // Перебираем массив где храняться хранятся карточки и используем функцию "rednerCard" для их добавления на страницу.
@@ -115,7 +111,8 @@ function renderCards(items) {
 
 // Инициализируем функцию для перебора массива.
 renderCards(initialCards);
-console.log('');
+
+
 // Функция для добавления карточки на сайт по событию "Submit"
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
@@ -130,23 +127,27 @@ function handleAddCardFormSubmit(evt) {
   closePopup();
 }
 
+// Функция для удаления карточки.
 function handleDelete (event) {
+  // Находим в DOM-дереве родителя элемента "event".
   const cardElement = event.target.closest('.photo-gallery__item');
-  
+  // Удаляем элемент.
   cardElement.remove();
 }
 
 // Функция для возможности ставить и снимать лайки.
 function toggleButtonLike(event) {
+  // Находим элемент "event" и добавляем ему класс.
   event.target.classList.toggle('photo-gallery__like-button_active');
 }
 
+// Функция для открытия попапа с изображением.
 function openZoomImage (event) {
-  arrayElementPopupForm[2].classList.add("popup_is-opend");
-  popupImageElement.src = event.target.getAttribute('src');
-  const textCardElement = event.target.parentNode.querySelector('.photo-gallery__title').textContent;
-  popupCaptionElement.textContent = textCardElement;
-  popupImageElement.alt = `Фотография загруженная пользователем «${textCardElement}»`;
+  arrayElementPopupForm[2].classList.add("popup_is-opend"); // Добавляем класс попапу для его отображения.
+  popupImageElement.src = event.target.getAttribute('src'); // Присваиваем значение атрибута SRC значению атрибута элемента "event".
+  const textCardElement = event.target.parentNode.querySelector('.photo-gallery__title').textContent; // Находим текстовое содержание заголовка элемента "event".
+  popupCaptionElement.textContent = textCardElement; // Присваиваем элементу ранее найденное текстовое содержание.
+  popupImageElement.alt = `Фотография загруженная пользователем «${textCardElement}»`; // Присваиваем элементу ранее найденное текстовое содержание.
   
 }
 

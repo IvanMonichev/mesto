@@ -115,15 +115,18 @@ function renderCards(items) {
 
 // Инициализируем функцию для перебора массива.
 renderCards(initialCards);
-
+console.log('');
 // Функция для добавления карточки на сайт по событию "Submit"
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
-  
-  initialCards.push({
-    name: popupAddCardTitleInputElement.value, link: popupAddCardLinkTitleInputElement.value,
-  });
-  renderCard(initialCards[initialCards.length - 1]);
+  // Проверка на заполнение значений в полях.
+  if ((popupAddCardTitleInputElement.value || popupAddCardLinkTitleInputElement.value)) {
+    initialCards.push({
+      name: popupAddCardTitleInputElement.value, link: popupAddCardLinkTitleInputElement.value,
+    });
+    renderCard(initialCards[initialCards.length - 1]);
+  }
+
   closePopup();
 }
 

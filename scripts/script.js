@@ -11,9 +11,7 @@ const photoGalleryListElement = document.querySelector(".photo-gallery__list");
 
 // --Popup Elements--
 const popupElements = document.querySelectorAll(".popup");
-const arrayElementPopupForm = Array.from(popupElements);
 const popupCloseButtonElements = document.querySelectorAll(".popup__close-button");
-const arrayPopupCloseButton = Array.from(popupCloseButtonElements);
 
 // --Edit Popup--
 const popupEditSectionElement = document.querySelector(".popup-edit-profile"); // Находим секцию "Редактирование профиля".
@@ -140,10 +138,8 @@ renderCards(initialCards);
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   // Проверка на заполнение значений в полях.
-  if ((popupAddTitleInputElement.value || popupAddLinkTitleInputElement.value)) {
-    const card = [{name: popupAddTitleInputElement.value, link: popupAddLinkTitleInputElement.value}];
-    renderCard(card);
-  }
+  const card = {name: popupAddTitleInputElement.value, link: popupAddLinkTitleInputElement.value};
+  renderCard(card);
 
   closePopup();
 }
@@ -167,8 +163,8 @@ popupEditFormElement.addEventListener("submit", handleProfileFormSubmit);
 popupAddFormElement.addEventListener("submit", handleAddCardFormSubmit);
 popupEditButtonElement.addEventListener("click", openEditPopup);
 popupAddButtonElement.addEventListener("click", openAddPopup);
-arrayPopupCloseButton.forEach((item) => item.addEventListener("click", closePopup));
-arrayElementPopupForm.forEach((item) => item.addEventListener("click", closePopupClickOnOverlay));
+popupCloseButtonElements.forEach((item) => item.addEventListener("click", closePopup));
+popupElements.forEach((item) => item.addEventListener("click", closePopupClickOnOverlay));
 
 // Обработчик сгенерированных элементов.
 function setEventListeners(cardElement) {

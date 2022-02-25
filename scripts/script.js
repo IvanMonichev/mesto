@@ -48,29 +48,29 @@ const initialCards = [{
   name: "Кисловодск", link: "./images/photo-6.jpg",
 }];
 
-// Функция для открытия попапа
-const openEditPopup = (event) => {
+const openEditPopup = () => {
   popupEditNameInputElement.value = profileTitleElement.textContent;
   popupEditAboutInputElement.value = profileSubtitleElement.textContent;
-  openPopup(event);
+  openPopup(popupEditSectionElement);
 }
 
-const openAddPopup = (event) => {
+const openAddPopup = () => {
   popupAddTitleInputElement.value = '';
   popupAddLinkTitleInputElement.value = '';
-  openPopup(event);
+  openPopup(popupAddSectionElement);
+}
+
+function openZoomImage(event) {
+  popupImageElement.src = event.target.getAttribute('src'); // Присваиваем значение атрибута SRC значению атрибута элемента "event".
+  const textCardElement = event.target.closest('.photo-gallery__item').querySelector('.photo-gallery__title').textContent; // Находим текстовое содержание заголовка элемента "event".
+  popupCaptionElement.textContent = textCardElement; // Присваиваем элементу ранее найденное текстовое содержание.
+  popupImageElement.alt = `Фотография загруженная пользователем «${textCardElement}»`; // Присваиваем элементу ранее найденное текстовое содержание.
+  openPopup(popupImageSectionElement);
 }
 
 // Общая функция для открытия попапов.
-const openPopup = (event) => {
-  // Устанавливаем зависимость открытия попапа от кнопки.
-  if (event.target === popupEditButtonElement) {
-    popupEditSectionElement.classList.add("popup_is-opened");
-
-  } else if (event.target === popupAddButtonElement) {
-    popupAddSectionElement.classList.add("popup_is-opened");
-
-  }
+const openPopup = (popup) => {
+    popup.classList.add("popup_is-opened");
 };
 
 // Функция для закрытия попапов.
@@ -155,16 +155,6 @@ function handleDelete(event) {
 function toggleButtonLike(event) {
   // Находим элемент "event" и добавляем ему класс.
   event.target.classList.toggle('photo-gallery__like-button_active');
-}
-
-// Функция для открытия попапа с изображением.
-function openZoomImage(event) {
-  arrayElementPopupForm[2].classList.add("popup_is-opened"); // Добавляем класс попапу для его отображения.
-  popupImageElement.src = event.target.getAttribute('src'); // Присваиваем значение атрибута SRC значению атрибута элемента "event".
-  const textCardElement = event.target.parentNode.querySelector('.photo-gallery__title').textContent; // Находим текстовое содержание заголовка элемента "event".
-  popupCaptionElement.textContent = textCardElement; // Присваиваем элементу ранее найденное текстовое содержание.
-  popupImageElement.alt = `Фотография загруженная пользователем «${textCardElement}»`; // Присваиваем элементу ранее найденное текстовое содержание.
-
 }
 
 // Регистрация обработчиков события по клику.

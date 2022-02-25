@@ -48,18 +48,21 @@ const initialCards = [{
   name: "Кисловодск", link: "./images/photo-6.jpg",
 }];
 
+// Функция для открытия попапа формы "Редактировать профиль"
 const openEditPopup = () => {
   popupEditNameInputElement.value = profileTitleElement.textContent;
   popupEditAboutInputElement.value = profileSubtitleElement.textContent;
   openPopup(popupEditSectionElement);
 }
 
+// Функция для открытия попапа формы "Новое место"
 const openAddPopup = () => {
   popupAddTitleInputElement.value = '';
   popupAddLinkTitleInputElement.value = '';
   openPopup(popupAddSectionElement);
 }
 
+// Функция для открытия попапа с изображением
 function openZoomImage(event) {
   popupImageElement.src = event.target.getAttribute('src'); // Присваиваем значение атрибута SRC значению атрибута элемента "event".
   const textCardElement = event.target.closest('.photo-gallery__item').querySelector('.photo-gallery__title').textContent; // Находим текстовое содержание заголовка элемента "event".
@@ -76,7 +79,9 @@ const openPopup = (popup) => {
 // Функция для закрытия попапов.
 const closePopup = function () {
   const popupIsOpened = document.querySelector('.popup_is-opened');
-  popupIsOpened.classList.remove('popup_is-opened');
+  if (popupIsOpened) {
+    popupIsOpened.classList.remove('popup_is-opened');
+  }
 
 };
 

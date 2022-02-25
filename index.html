@@ -31,14 +31,6 @@
 
     <section class="photo-gallery">
       <ul class="photo-gallery__list">
-        <template class="photo-gallery__item-template">
-          <li class="photo-gallery__item">
-            <img src="./images/photo-1.jpg" alt="Фотография загруженная пользователем «{title}»" class="photo-gallery__image">
-            <h2 class="photo-gallery__title"></h2>
-            <button class="photo-gallery__like-button button-action"></button>
-            <a class="photo-gallery__delete-button button-action"><img src="./images/trash.svg" alt="Корзина удаления"></a>
-          </li>
-        </template>
       </ul>
     </section>
 
@@ -56,16 +48,18 @@
       <button type="button" class="popup__close-button button-action"></button>
     </form>
   </section>
+
   <section class="popup popup-add-card">
     <form class="popup__container">
       <h2 class="popup__title">Новое место</h2>
       <input type="text" class="popup__text-input popup__text-input_type_title" name="title" placeholder="Название">
-      <input type="text" class="popup__text-input popup__text-input_type_link" name="about" placeholder="Ссылка на картинку">
+      <input type="url" class="popup__text-input popup__text-input_type_link" name="about" placeholder="Ссылка на картинку">
       <button class="popup__save-button button-action">Создать</button>
       <button type="button" class="popup__close-button button-action"></button>
     </form>
   </section>
-  <section class="popup image-zoom">
+
+  <section class="popup popup_dark-overlay image-zoom">
     <div class="image-zoom__container">
       <figure class="image-zoom__figure">
         <img class="image-zoom__image" src="https://picsum.photos/1400/1300"
@@ -75,7 +69,16 @@
       <button type="button" class="popup__close-button button-action"></button>
     </div>
   </section>
-  
+
+  <template class="photo-gallery__item-template">
+    <li class="photo-gallery__item">
+      <img src="./images/" alt="Фотография загруженная пользователем «{title}»" class="photo-gallery__image">
+      <h2 class="photo-gallery__title"></h2>
+      <button class="photo-gallery__like-button button-action"></button>
+      <a class="photo-gallery__delete-button button-action"><img src="./images/trash.svg" alt="Корзина удаления"></a>
+    </li>
+  </template>
+
   <script src="scripts/script.js"></script>
 </body>
 </html>

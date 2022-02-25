@@ -1,29 +1,37 @@
 // --- Объявление переменных ---
-const popupElements = document.querySelectorAll(".popup"); // Находим секции всех форм.
-const arrayElementPopupForm = Array.from(popupElements); // Превращаем NodeList в массив.
-const popupEditButtonElement = document.querySelector(".profile__edit-button"); // Находим кнопку для открытия формы "Редактирование профиля".
-const popupEditProfileElement = document.querySelector(".popup-edit-profile"); // Находим секцию "Редактирование профиля".
-const popupAddButtonElement = document.querySelector(".profile__add-button"); // Находим кнопку для открытия формы "Новое место"
-const popupAddCardElement = document.querySelector(".popup-add-card"); // Находим секцию "Новое место"
-
-const popupEditFormElement = arrayElementPopupForm[0].querySelector(".popup__container");
+// --Section Profile--
 const profileTitleElement = document.querySelector(".profile__title");
 const profileSubtitleElement = document.querySelector(".profile__subtitle");
-const popupCloseButtonElements = document.querySelectorAll(".popup__close-button"); // Находим секции всех форм.
-const arrayPopupCloseButton = Array.from(popupCloseButtonElements); // Превращаем NodeList в массив.
-const popupEditProfileNameInputElement = popupEditProfileElement.querySelector(".popup__text-input_type_name");
-const popupEditProfileAboutInputElement = popupEditProfileElement.querySelector(".popup__text-input_type_about");
-const popupAddFormElement = arrayElementPopupForm[1].querySelector(".popup__container");
-const popupAddCardTitleInputElement = popupAddFormElement.querySelector(".popup__text-input_type_title");
-const popupAddCardLinkTitleInputElement = popupAddFormElement.querySelector(".popup__text-input_type_link");
+const popupEditButtonElement = document.querySelector(".profile__edit-button");
+const popupAddButtonElement = document.querySelector(".profile__add-button");
 
-const popupImageZoomElement = arrayElementPopupForm[2].querySelector('.image-zoom__container');
-const popupImageElement = popupImageZoomElement.querySelector('.image-zoom__image');
-const popupCaptionElement = popupImageZoomElement.querySelector('.image-zoom__caption');
-
+// --Photo Gallery--
 const photoGalleryItemTemplateElement = document.querySelector(".photo-gallery__item-template");
-// Находим содержимое шаблона элемента Photo Gallery.
 const photoGalleryListElement = document.querySelector(".photo-gallery__list");
+
+// --Popup Elements--
+const popupElements = document.querySelectorAll(".popup");
+const arrayElementPopupForm = Array.from(popupElements);
+const popupCloseButtonElements = document.querySelectorAll(".popup__close-button");
+const arrayPopupCloseButton = Array.from(popupCloseButtonElements);
+
+// --Edit Popup--
+const popupEditSectionElement = document.querySelector(".popup-edit-profile"); // Находим секцию "Редактирование профиля".
+const popupEditFormElement = popupEditSectionElement.querySelector(".popup__container");
+const popupEditProfileNameInputElement = popupEditSectionElement.querySelector(".popup__text-input_type_name");
+const popupEditProfileAboutInputElement = popupEditSectionElement.querySelector(".popup__text-input_type_about");
+
+// --Add Popup--
+const popupAddSectionElement = document.querySelector(".popup-add-card");
+const popupAddFormElement = popupAddSectionElement.querySelector(".popup__container");
+const popupAddTitleInputElement = popupAddFormElement.querySelector(".popup__text-input_type_title");
+const popupAddLinkTitleInputElement = popupAddFormElement.querySelector(".popup__text-input_type_link");
+
+// --Image Zoom Popup--
+const popupImageSectionElement = document.querySelector('.image-zoom');
+const popupImageContainerElement = popupImageSectionElement.querySelector('.image-zoom__container');
+const popupImageElement = popupImageContainerElement.querySelector('.image-zoom__image');
+const popupCaptionElement = popupImageContainerElement.querySelector('.image-zoom__caption');
 
 // Создаём ассоциативный массив для хранения параметров карточек.
 const initialCards = [{
@@ -38,7 +46,7 @@ const initialCards = [{
   name: "Пётр 1", link: "./images/photo-5.jpg",
 }, {
   name: "Кисловодск", link: "./images/photo-6.jpg",
-},];
+}];
 
 // Функция для открытия попапа.
 const openPopup = function (event) {
@@ -47,12 +55,12 @@ const openPopup = function (event) {
     // Корректируем поля.
     popupEditProfileNameInputElement.value = profileTitleElement.textContent;
     popupEditProfileAboutInputElement.value = profileSubtitleElement.textContent;
-    popupEditProfileElement.classList.add("popup_is-opend");
+    popupEditSectionElement.classList.add("popup_is-opend");
   } else if (event.target === popupAddButtonElement) {
     // Корректируем поля.
-    popupAddCardTitleInputElement.value = '';
-    popupAddCardLinkTitleInputElement.value = '';
-    popupAddCardElement.classList.add("popup_is-opend");
+    popupAddTitleInputElement.value = '';
+    popupAddLinkTitleInputElement.value = '';
+    popupAddSectionElement.classList.add("popup_is-opend");
   }
 };
 
@@ -117,9 +125,9 @@ renderCards(initialCards);
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   // Проверка на заполнение значений в полях.
-  if ((popupAddCardTitleInputElement.value || popupAddCardLinkTitleInputElement.value)) {
+  if ((popupAddTitleInputElement.value || popupAddLinkTitleInputElement.value)) {
     initialCards.push({
-      name: popupAddCardTitleInputElement.value, link: popupAddCardLinkTitleInputElement.value,
+      name: popupAddTitleInputElement.value, link: popupAddLinkTitleInputElement.value,
     });
     renderCard(initialCards[initialCards.length - 1]);
   }

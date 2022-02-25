@@ -18,8 +18,8 @@ const arrayPopupCloseButton = Array.from(popupCloseButtonElements);
 // --Edit Popup--
 const popupEditSectionElement = document.querySelector(".popup-edit-profile"); // Находим секцию "Редактирование профиля".
 const popupEditFormElement = popupEditSectionElement.querySelector(".popup__container");
-const popupEditProfileNameInputElement = popupEditSectionElement.querySelector(".popup__text-input_type_name");
-const popupEditProfileAboutInputElement = popupEditSectionElement.querySelector(".popup__text-input_type_about");
+const popupEditNameInputElement = popupEditSectionElement.querySelector(".popup__text-input_type_name");
+const popupEditAboutInputElement = popupEditSectionElement.querySelector(".popup__text-input_type_about");
 
 // --Add Popup--
 const popupAddSectionElement = document.querySelector(".popup-add-card");
@@ -48,31 +48,36 @@ const initialCards = [{
   name: "Кисловодск", link: "./images/photo-6.jpg",
 }];
 
-// Функция для открытия попапа.
-const openPopup = function (event) {
+// Функция для открытия попапа
+const openEditPopup = (event) => {
+  popupEditNameInputElement.value = profileTitleElement.textContent;
+  popupEditAboutInputElement.value = profileSubtitleElement.textContent;
+  openPopup(event);
+}
+
+const openAddPopup = (event) => {
+  popupAddTitleInputElement.value = '';
+  popupAddLinkTitleInputElement.value = '';
+  openPopup(event);
+}
+
+// Общая функция для открытия попапов.
+const openPopup = (event) => {
   // Устанавливаем зависимость открытия попапа от кнопки.
   if (event.target === popupEditButtonElement) {
-    // Корректируем поля.
-    popupEditProfileNameInputElement.value = profileTitleElement.textContent;
-    popupEditProfileAboutInputElement.value = profileSubtitleElement.textContent;
-    popupEditSectionElement.classList.add("popup_is-opend");
+    popupEditSectionElement.classList.add("popup_is-opened");
+
   } else if (event.target === popupAddButtonElement) {
-    // Корректируем поля.
-    popupAddTitleInputElement.value = '';
-    popupAddLinkTitleInputElement.value = '';
-    popupAddSectionElement.classList.add("popup_is-opend");
+    popupAddSectionElement.classList.add("popup_is-opened");
+
   }
 };
 
-// Функция для закрытия попапа.
+// Функция для закрытия попапов.
 const closePopup = function () {
-  // Поиск открытой формы для её закрытия.
-  arrayElementPopupForm.some(function (item) {
-    if (item.getAttribute("class").includes("popup_is-opend")) {
-      item.classList.remove("popup_is-opend");
-      return true;
-    }
-  });
+  const popupIsOpened = document.querySelector('.popup_is-opened');
+  popupIsOpened.classList.remove('popup_is-opened');
+
 };
 
 // Функция для закрытия попапа по клику на затемненную область.
@@ -89,13 +94,13 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
   // Сохраняем новые значения.
-  profileTitleElement.textContent = popupEditProfileNameInputElement.value;
-  profileSubtitleElement.textContent = popupEditProfileAboutInputElement.value;
+  profileTitleElement.textContent = popupEditNameInputElement.value;
+  profileSubtitleElement.textContent = popupEditAboutInputElement.value;
   closePopup();
 }
 
 // 	Функция для генерации карточек на странице
-function renderCard(item) {
+function createCard(item) {
   // Дублируем шаблон и записываем его в константу.
   const photoGalleryItemElement = photoGalleryItemTemplateElement.content.cloneNode(true);
 
@@ -107,36 +112,39 @@ function renderCard(item) {
   // Вешаем обработчики на сгенерированный элемент
   setEventListeners(photoGalleryItemElement);
 
-  // Добавляем готовый элемент на страницу.
-  photoGalleryListElement.prepend(photoGalleryItemElement);
-  // Добавляем обработчик события для кнопки "button".
+  // Возвращаем готовую карточку.
+  return photoGalleryItemElement;
 }
 
-// Перебираем массив где храняться хранятся карточки и используем функцию "rednerCard" для их добавления на страницу.
+// Функция для внедрения в разметку карточки
+function renderCard(card) {
+  const photoGalleryItemElement = createCard(card);
+  photoGalleryListElement.prepend(photoGalleryItemElement);
+
+}
+
+// Функция для перебора массива
 function renderCards(items) {
   items.forEach(renderCard);
 }
 
-// Инициализируем функцию для перебора массива.
+// Инициализируем перебор массива
 renderCards(initialCards);
-
 
 // Функция для добавления карточки на сайт по событию "Submit"
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   // Проверка на заполнение значений в полях.
   if ((popupAddTitleInputElement.value || popupAddLinkTitleInputElement.value)) {
-    initialCards.push({
-      name: popupAddTitleInputElement.value, link: popupAddLinkTitleInputElement.value,
-    });
-    renderCard(initialCards[initialCards.length - 1]);
+    const card = [{name: popupAddTitleInputElement.value, link: popupAddLinkTitleInputElement.value}];
+    renderCard(card);
   }
 
   closePopup();
 }
 
 // Функция для удаления карточки.
-function handleDelete (event) {
+function handleDelete(event) {
   // Находим в DOM-дереве родителя элемента "event".
   const cardElement = event.target.closest('.photo-gallery__item');
   // Удаляем элемент.
@@ -150,20 +158,20 @@ function toggleButtonLike(event) {
 }
 
 // Функция для открытия попапа с изображением.
-function openZoomImage (event) {
-  arrayElementPopupForm[2].classList.add("popup_is-opend"); // Добавляем класс попапу для его отображения.
+function openZoomImage(event) {
+  arrayElementPopupForm[2].classList.add("popup_is-opened"); // Добавляем класс попапу для его отображения.
   popupImageElement.src = event.target.getAttribute('src'); // Присваиваем значение атрибута SRC значению атрибута элемента "event".
   const textCardElement = event.target.parentNode.querySelector('.photo-gallery__title').textContent; // Находим текстовое содержание заголовка элемента "event".
   popupCaptionElement.textContent = textCardElement; // Присваиваем элементу ранее найденное текстовое содержание.
   popupImageElement.alt = `Фотография загруженная пользователем «${textCardElement}»`; // Присваиваем элементу ранее найденное текстовое содержание.
-  
+
 }
 
 // Регистрация обработчиков события по клику.
 popupEditFormElement.addEventListener("submit", handleProfileFormSubmit);
 popupAddFormElement.addEventListener("submit", handleAddCardFormSubmit);
-popupEditButtonElement.addEventListener("click", openPopup);
-popupAddButtonElement.addEventListener("click", openPopup);
+popupEditButtonElement.addEventListener("click", openEditPopup);
+popupAddButtonElement.addEventListener("click", openAddPopup);
 arrayPopupCloseButton.forEach((item) => item.addEventListener("click", closePopup));
 arrayElementPopupForm.forEach((item) => item.addEventListener("click", closePopupClickOnOverlay));
 

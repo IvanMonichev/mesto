@@ -158,6 +158,7 @@ function toggleButtonLike(event) {
   event.target.classList.toggle('photo-gallery__like-button_active');
 }
 
+
 // Регистрация обработчиков события по клику.
 popupEditFormElement.addEventListener("submit", handleProfileFormSubmit);
 popupAddFormElement.addEventListener("submit", handleAddCardFormSubmit);
@@ -172,3 +173,72 @@ function setEventListeners(cardElement) {
   cardElement.querySelector('.photo-gallery__delete-button').addEventListener('click', handleDelete);
   cardElement.querySelector('.photo-gallery__image').addEventListener('click', openZoomImage)
 }
+
+/* -- ВАЛИДАЦИЯ ФОРМ -- */
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  console.log(formElement);
+  console.log(inputElement);
+  console.log(errorElement);
+  inputElement.classList.add('popup__text-input_type_error');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('popup__input-error_active');
+}
+
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove('popup__text-input_type_error');
+  errorElement.classList.remove('popup__input-error_active');
+  errorElement.textContent = '';
+}
+
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+  
+};
+
+const toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add('button_inactive');
+  } else {
+    buttonElement.classList.remove('button_inactive');
+  }
+}
+
+const setEventListenersInputs = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll('.popup__text-input'));
+  const buttonElement = formElement.querySelector('.popup__save-button');
+  
+  toggleButtonState(inputList, buttonElement);
+  
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function () {
+      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
+
+    });
+  });
+}
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.popup__container'));
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', function (event) {
+      event.preventDefault();
+    })
+    setEventListenersInputs(formElement);
+  })
+}
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  })
+}
+
+enableValidation();

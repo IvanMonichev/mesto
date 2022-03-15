@@ -2,4 +2,6 @@
     color: red;
     font-size: 12px;
     line-height: 1.25;
+    display: none;
+    max-width: 358px;
 }

@@ -42,14 +42,10 @@
   <section class="popup popup-edit-profile popup_is-opened">
     <form class="popup__container" novalidate>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <div class="popup__field-input">
-        <input type="text" id="text-input" class="popup__text-input popup__text-input_type_name" name="name" placeholder="Имя" required minlength="2">
-        <span class="popup__input-error text-input-error">s</span>
-      </div>
-      <div class="popup__field-input">
-        <input type="text" id="text-input" class="popup__text-input popup__text-input_type_about popup__input_type_error" name="about" placeholder="О себе">
-        <span class="popup__input-error text-input-error"></span>
-      </div>
+      <input type="text" id="name-input" class="popup__text-input popup__text-input_type_name" name="name" placeholder="Имя" required minlength="2">
+      <span class="popup__input-error text-input-error"></span>
+      <input type="text" id="about-input" class="popup__text-input popup__text-input_type_about popup__input_type_error" name="about" placeholder="О себе">
+      <span class="popup__input-error text-input-error">&nbsp;</span>
       <button class="popup__save-button button-action">Сохранить</button>
       <button type="button" class="popup__close-button button-action"></button>
     </form>

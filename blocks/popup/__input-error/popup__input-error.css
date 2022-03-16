@@ -2,6 +2,12 @@
     color: red;
     font-size: 12px;
     line-height: 1.25;
-    display: none;
     max-width: 358px;
+    min-height: 12px;
+    margin: 5px 0 13px 0;
+    display: block;
+}
+
+.popup__input-error:last-of-type {
+  margin: 5px 0 0 0;
 }

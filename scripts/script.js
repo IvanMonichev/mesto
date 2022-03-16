@@ -158,7 +158,6 @@ function toggleButtonLike(event) {
   event.target.classList.toggle('photo-gallery__like-button_active');
 }
 
-
 // Регистрация обработчиков события по клику.
 popupEditFormElement.addEventListener("submit", handleProfileFormSubmit);
 popupAddFormElement.addEventListener("submit", handleAddCardFormSubmit);
@@ -176,6 +175,8 @@ function setEventListeners(cardElement) {
 
 /* -- ВАЛИДАЦИЯ ФОРМ -- */
 
+
+// Показать визуальное отображение ошибки поля.
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add('popup__text-input_type_error');
@@ -195,27 +196,23 @@ const checkInputValidity = (formElement, inputElement) => {
     hideInputError(formElement, inputElement);
   }
   
-};
+}
 
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('button_inactive');
+    buttonElement.classList.add('button-inactive');
   } else {
-    buttonElement.classList.remove('button_inactive');
+    buttonElement.classList.remove('button-inactive');
   }
 }
 
 const setEventListenersInputs = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll('.popup__text-input'));
   const buttonElement = formElement.querySelector('.popup__save-button');
-  
-  toggleButtonState(inputList, buttonElement);
-  console.log(inputList);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement);
       toggleButtonState(inputList, buttonElement);
-
     });
   });
 }
@@ -223,15 +220,13 @@ const setEventListenersInputs = (formElement) => {
 const enableValidation = () => {
   const formList = Array.from(document.querySelectorAll('.popup__container'));
   formList.forEach((formElement) => {
-    formElement.addEventListener('submit', function (event) {
-      event.preventDefault();
-    })
     setEventListenersInputs(formElement);
   })
 }
 
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
+    console.log(!inputElement.validity.valid);
     return !inputElement.validity.valid;
   })
 }

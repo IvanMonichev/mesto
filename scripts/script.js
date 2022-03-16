@@ -178,9 +178,6 @@ function setEventListeners(cardElement) {
 
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  console.log(formElement);
-  console.log(inputElement);
-  console.log(errorElement);
   inputElement.classList.add('popup__text-input_type_error');
   errorElement.textContent = errorMessage;
 }
@@ -213,7 +210,7 @@ const setEventListenersInputs = (formElement) => {
   const buttonElement = formElement.querySelector('.popup__save-button');
   
   toggleButtonState(inputList, buttonElement);
-  
+  console.log(inputList);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement);

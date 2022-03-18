@@ -32,9 +32,9 @@ const toggleButtonState = (inputList, buttonElement) => {
 }
 
 // Установка слушателя
-const setEventListenersInputs = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__text-input'));
-  const buttonElement = formElement.querySelector('.popup__save-button');
+const setEventListenersInputs = (formElement, formComponent) => {
+  const inputList = Array.from(formElement.querySelectorAll(formComponent.inputSelector));
+  const buttonElement = formElement.querySelector(formComponent.submitButtonSelector);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement);
@@ -43,16 +43,11 @@ const setEventListenersInputs = (formElement) => {
   });
 }
 
-setValidationForms = () => {
-  const formList = Array.from(document.querySelectorAll('.popup__container'));
+enableValidation = (formComponents) => {
+  const formList = Array.from(document.querySelectorAll(formComponents.formSelector));
   formList.forEach((formElement) => {
-    setEventListenersInputs(formElement);
+    setEventListenersInputs(formElement, formComponents);
   })
-}
-
-// Установка функции валидации на формы.
-const enableValidation = () => {
-
 }
 
 // Проверка поля ввода на валидацию.
@@ -63,12 +58,10 @@ const hasInvalidInput = (inputList) => {
   })
 }
 
-enableValidation();
-
 enableValidation({
   formSelector: '.popup__container',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
+  inputSelector: '.popup__text-input',
+  submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'

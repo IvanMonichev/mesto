@@ -5,4 +5,5 @@
     max-width: 358px;
     min-height: 30px;
     display: block;
+    visibility: hidden;
 }

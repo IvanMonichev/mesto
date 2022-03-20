@@ -2,6 +2,7 @@
 const showInputError = (formElement, inputElement, errorMessage, formComponents) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(formComponents.inputErrorClass);
+  errorElement.classList.add(formComponents.errorClass);
   errorElement.textContent = errorMessage;
 }
 
@@ -9,6 +10,7 @@ const showInputError = (formElement, inputElement, errorMessage, formComponents)
 const hideInputError = (formElement, inputElement, formComponents) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(formComponents.inputErrorClass);
+  errorElement.classList.remove(formComponents.errorClass);
   errorElement.textContent = '';
 }
 
@@ -62,5 +64,5 @@ enableValidation({
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'button-inactive',
   inputErrorClass: 'popup__input-text_type_error',
-  errorClass: 'popup__error_visible'
+  errorClass: 'popup__input-error_visible'
 });

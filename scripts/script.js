@@ -72,6 +72,8 @@ function openZoomImage(event) {
 // Общая функция для открытия попапов.
 const openPopup = (popup) => {
     popup.classList.add("popup_is-opened");
+    document.addEventListener("keydown", closePopupPressOnEsc);
+
 };
 
 // Функция для закрытия попапов.
@@ -79,6 +81,7 @@ const closePopup = function () {
   const popupIsOpened = document.querySelector('.popup_is-opened');
   if (popupIsOpened) {
     popupIsOpened.classList.remove('popup_is-opened');
+    document.removeEventListener("keydown", closePopupPressOnEsc);
   }
 
 };
@@ -99,7 +102,6 @@ const closePopupPressOnEsc = (event) => {
     }
   }
 }
-
 
 // Функция для изменение значений по событию попапа "EditProfile" "Submit"
 function handleProfileFormSubmit(evt) {
@@ -174,7 +176,6 @@ popupEditButtonElement.addEventListener("click", openEditPopup);
 popupAddButtonElement.addEventListener("click", openAddPopup);
 popupCloseButtonElements.forEach((item) => item.addEventListener("click", closePopup));
 popupElements.forEach((item) => item.addEventListener("click", closePopupClickOnOverlay));
-document.addEventListener("keydown", closePopupPressOnEsc);
 
 // Обработчик сгенерированных элементов.
 function setEventListeners(cardElement) {

@@ -23,12 +23,21 @@ const checkInputValidity = (formElement, inputElement, formComponents) => {
   }
 }
 
+// Проверка поля ввода на валидацию.
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+}
+
 // Переключение кнопки из активного состояния в неактивное
 const toggleButtonState = (inputList, buttonElement, formComponents) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(formComponents.inactiveButtonClass);
+    buttonElement.setAttribute("disabled", true);
   } else {
     buttonElement.classList.remove(formComponents.inactiveButtonClass);
+    buttonElement.removeAttribute("disabled");
   }
 }
 
@@ -44,19 +53,18 @@ const setEventListenersInputs = (formElement, formComponents) => {
   });
 }
 
+const cancelHandlerSubmit = (event) => {
+  event.preventDefault();
+}
+
 enableValidation = (formComponents) => {
   const formList = Array.from(document.querySelectorAll(formComponents.formSelector));
   formList.forEach((formElement) => {
+    formElement.addEventListener('submit', cancelHandlerSubmit);
     setEventListenersInputs(formElement, formComponents);
-  })
+  });
 }
 
-// Проверка поля ввода на валидацию.
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  })
-}
 
 enableValidation({
   formSelector: '.popup__container',

@@ -88,9 +88,18 @@ const closePopupClickOnOverlay = function (event) {
   if (event.target !== event.currentTarget) {
     return;
   }
-
   closePopup();
 };
+
+const closePopupPressOnEsc = (event) => {
+  const popupIsOpened = document.querySelector('.popup_is-opened');
+  if (popupIsOpened) {
+    if (event.key === "Escape") {
+      closePopup();
+    }
+  }
+}
+
 
 // Функция для изменение значений по событию попапа "EditProfile" "Submit"
 function handleProfileFormSubmit(evt) {
@@ -158,17 +167,19 @@ function toggleButtonLike(event) {
   event.target.classList.toggle('photo-gallery__like-button_active');
 }
 
-// Регистрация обработчиков события по клику.
+// Регистрация обработчиков события.
 popupEditFormElement.addEventListener("submit", handleProfileFormSubmit);
 popupAddFormElement.addEventListener("submit", handleAddCardFormSubmit);
 popupEditButtonElement.addEventListener("click", openEditPopup);
 popupAddButtonElement.addEventListener("click", openAddPopup);
 popupCloseButtonElements.forEach((item) => item.addEventListener("click", closePopup));
 popupElements.forEach((item) => item.addEventListener("click", closePopupClickOnOverlay));
+document.addEventListener("keydown", closePopupPressOnEsc);
 
 // Обработчик сгенерированных элементов.
 function setEventListeners(cardElement) {
   cardElement.querySelector('.photo-gallery__like-button').addEventListener('click', toggleButtonLike);
   cardElement.querySelector('.photo-gallery__delete-button').addEventListener('click', handleDelete);
-  cardElement.querySelector('.photo-gallery__image').addEventListener('click', openZoomImage)
+  cardElement.querySelector('.photo-gallery__image').addEventListener('click', openZoomImage);
 }
+

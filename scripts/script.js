@@ -46,17 +46,27 @@ const initialCards = [{
   name: "Кисловодск", link: "./images/photo-6.jpg",
 }];
 
-// Функция для открытия попапа формы "Редактировать профиль"
-const openEditPopup = () => {
+const generateValuesInputsEditPopup = () => {
   popupEditNameInputElement.value = profileTitleElement.textContent;
   popupEditAboutInputElement.value = profileSubtitleElement.textContent;
+}
+
+generateValuesInputsEditPopup();
+
+// Функция для открытия попапа формы "Редактировать профиль"
+const openEditPopup = () => {
+  generateValuesInputsEditPopup();
   openPopup(popupEditSectionElement);
 }
 
 // Функция для открытия попапа формы "Новое место"
 const openAddPopup = () => {
+  const popupSaveButtonElement = popupAddSectionElement.querySelector('.popup__save-button');
+
   popupAddTitleInputElement.value = '';
   popupAddLinkTitleInputElement.value = '';
+  popupSaveButtonElement.classList.add("button-inactive");
+  popupSaveButtonElement.setAttribute("disabled", true);
   openPopup(popupAddSectionElement);
 }
 
@@ -83,7 +93,6 @@ const closePopup = function () {
     popupIsOpened.classList.remove('popup_is-opened');
     document.removeEventListener("keydown", closePopupPressOnEsc);
   }
-
 };
 
 // Функция для закрытия попапа по клику на затемненную область.
@@ -95,9 +104,9 @@ const closePopupClickOnOverlay = function (event) {
 };
 
 const closePopupPressOnEsc = (event) => {
-  const popupIsOpened = document.querySelector('.popup_is-opened');
-  if (popupIsOpened) {
-    if (event.key === "Escape") {
+  if (event.key === "Escape") {
+    const popupIsOpened = document.querySelector('.popup_is-opened');
+    if (popupIsOpened) {
       closePopup();
     }
   }

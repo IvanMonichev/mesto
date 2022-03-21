@@ -61,8 +61,12 @@ const openEditPopup = () => {
 
 // Функция для открытия попапа формы "Новое место"
 const openAddPopup = () => {
+  const popupSaveButtonElement = popupAddSectionElement.querySelector('.popup__save-button');
+
   popupAddTitleInputElement.value = '';
   popupAddLinkTitleInputElement.value = '';
+  popupSaveButtonElement.classList.add("button-inactive");
+  popupSaveButtonElement.setAttribute("disabled", true);
   openPopup(popupAddSectionElement);
 }
 

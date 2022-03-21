@@ -93,7 +93,6 @@ const closePopup = function () {
     popupIsOpened.classList.remove('popup_is-opened');
     document.removeEventListener("keydown", closePopupPressOnEsc);
   }
-
 };
 
 // Функция для закрытия попапа по клику на затемненную область.
@@ -105,9 +104,9 @@ const closePopupClickOnOverlay = function (event) {
 };
 
 const closePopupPressOnEsc = (event) => {
-  const popupIsOpened = document.querySelector('.popup_is-opened');
-  if (popupIsOpened) {
-    if (event.key === "Escape") {
+  if (event.key === "Escape") {
+    const popupIsOpened = document.querySelector('.popup_is-opened');
+    if (popupIsOpened) {
       closePopup();
     }
   }

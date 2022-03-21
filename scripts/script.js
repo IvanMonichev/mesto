@@ -46,10 +46,16 @@ const initialCards = [{
   name: "Кисловодск", link: "./images/photo-6.jpg",
 }];
 
-// Функция для открытия попапа формы "Редактировать профиль"
-const openEditPopup = () => {
+const generateValuesInputsEditPopup = () => {
   popupEditNameInputElement.value = profileTitleElement.textContent;
   popupEditAboutInputElement.value = profileSubtitleElement.textContent;
+}
+
+generateValuesInputsEditPopup();
+
+// Функция для открытия попапа формы "Редактировать профиль"
+const openEditPopup = () => {
+  generateValuesInputsEditPopup();
   openPopup(popupEditSectionElement);
 }
 

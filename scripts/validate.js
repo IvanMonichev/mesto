@@ -51,6 +51,7 @@ const setEventListenersInputs = (formElement, formComponents) => {
       toggleButtonState(inputList, buttonElement, formComponents);
     });
   });
+  toggleButtonState(inputList, buttonElement, formComponents);
 }
 
 const cancelHandlerSubmit = (event) => {

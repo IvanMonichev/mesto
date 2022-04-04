@@ -106,38 +106,6 @@ function handleProfileFormSubmit(evt) {
   closePopup();
 }
 
-// 	Функция для генерации карточек на странице
-function createCard(item) {
-  // Дублируем шаблон и записываем его в константу.
-  const photoGalleryItemElement = photoGalleryItemTemplateElement.content.cloneNode(true);
-
-  // Заполняем элементы шаблона данными из массива.
-  photoGalleryItemElement.querySelector(".photo-gallery__title").textContent = item.name;
-  photoGalleryItemElement.querySelector(".photo-gallery__image").src = item.link;
-  photoGalleryItemElement.querySelector(".photo-gallery__image").alt = `Фотография загруженная пользователем «${item.name}»`;
-
-  // Вешаем обработчики на сгенерированный элемент
-  setEventListeners(photoGalleryItemElement);
-
-  // Возвращаем готовую карточку.
-  return photoGalleryItemElement;
-}
-
-// Функция для внедрения в разметку карточки
-function renderCard(card) {
-  const photoGalleryItemElement = createCard(card);
-  photoGalleryListElement.prepend(photoGalleryItemElement);
-
-}
-
-// Функция для перебора массива
-function renderCards(items) {
-  items.forEach(renderCard);
-}
-
-// Инициализируем перебор массива
-renderCards(initialCards);
-
 // Функция для добавления карточки на сайт по событию "Submit"
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();

@@ -1,5 +1,5 @@
 // --Photo Gallery--
-const photoGalleryListElement = document.querySelector(".photo-gallery__list");
+const cardList = document.querySelector(".photo-gallery__list");
 
 const cardItems = [
   {
@@ -30,20 +30,36 @@ const cardItems = [
 
 class Card {
   
-  template = document.querySelector(".photo-gallery__item-template").content;
+  _template = document.querySelector(".photo-gallery__item-template").content;
   
-  constructor(items) {
-    this._name = items.name;
-    this._link = items.name;
+  constructor(data) {
+    this._name = data.name;
+    this._link = data.link;
   }
   
+  // Получаем шаблон карточки.
   _getTemplate() {
-    const cardElement = this.template.querySelector('.photo-gallery__item');
-    cardElement.cloneNode(true);
+    const cardElement = this._template.querySelector('.photo-gallery__item').cloneNode(true);
     return cardElement;
   }
   
-  renderCard() {
+  generateCard() {
     this._element = this._getTemplate();
+    this._element.querySelector(".photo-gallery__title").textContent = this._name;
+    this._element.querySelector(".photo-gallery__image").src = this._link;
+    this._element.querySelector(".photo-gallery__image").alt = `Фотография загруженная пользователем «${this._name}»`;
+    
+    return this._element;
   }
 }
+
+const renderCards = () => {
+  cardItems.forEach((item) => {
+    const card = new Card(item);
+    const cardElement = card.generateCard();
+    cardList.prepend(cardElement);
+
+  });
+};
+
+renderCards();

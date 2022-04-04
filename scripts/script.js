@@ -29,7 +29,6 @@ const popupCaptionElement = popupImageContainerElement.querySelector('.image-zoo
 
 // Создаём ассоциативный массив для хранения параметров карточек.
 
-
 const generateValuesInputsEditPopup = () => {
   popupEditNameInputElement.value = profileTitleElement.textContent;
   popupEditAboutInputElement.value = profileSubtitleElement.textContent;
@@ -116,19 +115,11 @@ function handleAddCardFormSubmit(evt) {
   closePopup();
 }
 
-// Функция для удаления карточки.
-function handleDelete(event) {
-  // Находим в DOM-дереве родителя элемента "event".
-  const cardElement = event.target.closest('.photo-gallery__item');
-  // Удаляем элемент.
-  cardElement.remove();
-}
-
 // Функция для возможности ставить и снимать лайки.
-function toggleButtonLike(event) {
+/*function toggleButtonLike(event) {
   // Находим элемент "event" и добавляем ему класс.
   event.target.classList.toggle('photo-gallery__like-button_active');
-}
+}*/
 
 // Регистрация обработчиков события.
 popupEditFormElement.addEventListener("submit", handleProfileFormSubmit);
@@ -139,9 +130,9 @@ popupCloseButtonElements.forEach((item) => item.addEventListener("click", closeP
 popupElements.forEach((item) => item.addEventListener("click", closePopupClickOnOverlay));
 
 // Обработчик сгенерированных элементов.
-function setEventListeners(cardElement) {
-  cardElement.querySelector('.photo-gallery__like-button').addEventListener('click', toggleButtonLike);
-  cardElement.querySelector('.photo-gallery__delete-button').addEventListener('click', handleDelete);
-  cardElement.querySelector('.photo-gallery__image').addEventListener('click', openZoomImage);
-}
+// function setEventListeners(cardElement) {
+//   cardElement.querySelector('.photo-gallery__like-button').addEventListener('click', toggleButtonLike);
+//   cardElement.querySelector('.photo-gallery__delete-button').addEventListener('click', handleDelete);
+//   cardElement.querySelector('.photo-gallery__image').addEventListener('click', openZoomImage);
+// }
 

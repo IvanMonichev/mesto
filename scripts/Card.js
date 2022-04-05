@@ -1,5 +1,10 @@
-// --Photo Gallery--
+
 const cardList = document.querySelector(".photo-gallery__list");
+
+const popupImageSectionElement = document.querySelector('.image-zoom');
+const popupImageContainerElement = popupImageSectionElement.querySelector('.image-zoom__container');
+const popupImageElement = popupImageContainerElement.querySelector('.image-zoom__image');
+const popupCaptionElement = popupImageContainerElement.querySelector('.image-zoom__caption');
 
 const cardItems = [{
   name: "Карелия", link: "./images/photo-1.jpg",
@@ -25,6 +30,7 @@ class Card {
 
     this._handleDelete = this._handleDelete.bind(this);
     this._toggleButtonLike = this._toggleButtonLike.bind(this);
+    this._openZoomImage = this._openZoomImage.bind(this);
   }
 
   // Получаем шаблон карточки.
@@ -55,13 +61,20 @@ class Card {
     likeButtonElement.classList.toggle('photo-gallery__like-button_active');
   }
 
+  _openZoomImage() {
+    popupImageElement.src = this._link;
+    popupCaptionElement.textContent = this._name;
+    popupImageElement.alt = `Фотография загруженная пользователем «${this._name}»`;
+    popupImageSectionElement.classList.add("popup_is-opened");
+    document.addEventListener("keydown", closePopupPressOnEsc);
+  }
+
   _setEventListeners() {
     this._element.querySelector('.photo-gallery__delete-button').addEventListener('click', this._handleDelete);
     this._element.querySelector('.photo-gallery__like-button').addEventListener('click', this._toggleButtonLike);
-    // this._element.querySelector('.photo-gallery__image').addEventListener('click', this._openZoomImage);
+    this._element.querySelector('.photo-gallery__image').addEventListener('click', this._openZoomImage);
 
   }
-
 }
 
 const renderCards = () => {
@@ -74,3 +87,8 @@ const renderCards = () => {
 };
 
 renderCards();
+
+const openPopup = (popup) => {
+  popup.classList.add("popup_is-opened");
+  document.addEventListener("keydown", closePopupPressOnEsc);
+};

@@ -22,10 +22,7 @@ const popupAddTitleInputElement = popupAddFormElement.querySelector(".popup__tex
 const popupAddLinkTitleInputElement = popupAddFormElement.querySelector(".popup__text-input_type_link");
 
 // --Image Zoom Popup--
-const popupImageSectionElement = document.querySelector('.image-zoom');
-const popupImageContainerElement = popupImageSectionElement.querySelector('.image-zoom__container');
-const popupImageElement = popupImageContainerElement.querySelector('.image-zoom__image');
-const popupCaptionElement = popupImageContainerElement.querySelector('.image-zoom__caption');
+
 
 // Создаём ассоциативный массив для хранения параметров карточек.
 
@@ -63,11 +60,7 @@ function openZoomImage(event) {
 }
 
 // Общая функция для открытия попапов.
-const openPopup = (popup) => {
-    popup.classList.add("popup_is-opened");
-    document.addEventListener("keydown", closePopupPressOnEsc);
 
-};
 
 // Функция для закрытия попапов.
 const closePopup = function () {

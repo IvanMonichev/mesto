@@ -1,24 +1,10 @@
-
-const cardList = document.querySelector(".photo-gallery__list");
-
-const popupImageSectionElement = document.querySelector('.image-zoom');
-const popupImageContainerElement = popupImageSectionElement.querySelector('.image-zoom__container');
-const popupImageElement = popupImageContainerElement.querySelector('.image-zoom__image');
-const popupCaptionElement = popupImageContainerElement.querySelector('.image-zoom__caption');
-
-const cardItems = [{
-  name: "Карелия", link: "./images/photo-1.jpg",
-}, {
-  name: "Санкт-Петербург", link: "./images/photo-2.jpg",
-}, {
-  name: "Иваново", link: "./images/photo-3.jpg",
-}, {
-  name: "Петрозаводск", link: "./images/photo-4.jpg",
-}, {
-  name: "Пётр 1", link: "./images/photo-5.jpg",
-}, {
-  name: "Кисловодск", link: "./images/photo-6.jpg",
-}];
+import {cardItems} from './cardItems.js';
+import {
+  cardList,
+  popupImageSectionElement,
+  popupImageElement,
+  popupCaptionElement
+} from './data.js';
 
 class Card {
 

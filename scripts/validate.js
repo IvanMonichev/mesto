@@ -66,7 +66,6 @@ enableValidation = (formComponents) => {
   });
 }
 
-
 enableValidation({
   formSelector: '.popup__container',
   inputSelector: '.popup__text-input',

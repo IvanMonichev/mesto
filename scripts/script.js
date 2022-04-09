@@ -21,9 +21,6 @@ const popupAddFormElement = popupAddSectionElement.querySelector(".popup__contai
 const popupAddTitleInputElement = popupAddFormElement.querySelector(".popup__text-input_type_title");
 const popupAddLinkTitleInputElement = popupAddFormElement.querySelector(".popup__text-input_type_link");
 
-// --Image Zoom Popup--
-
-
 // Создаём ассоциативный массив для хранения параметров карточек.
 
 const generateValuesInputsEditPopup = () => {
@@ -32,6 +29,12 @@ const generateValuesInputsEditPopup = () => {
 }
 
 generateValuesInputsEditPopup();
+
+const openPopup = (popup) => {
+  popup.classList.add("popup_is-opened");
+  document.addEventListener("keydown", closePopupPressOnEsc);
+
+};
 
 // Функция для открытия попапа формы "Редактировать профиль"
 const openEditPopup = () => {
@@ -49,18 +52,6 @@ const openAddPopup = () => {
   popupSaveButtonElement.setAttribute("disabled", true);
   openPopup(popupAddSectionElement);
 }
-
-// Функция для открытия попапа с изображением
-function openZoomImage(event) {
-  popupImageElement.src = event.target.getAttribute('src'); // Присваиваем значение атрибута SRC значению атрибута элемента "event".
-  const textCardElement = event.target.closest('.photo-gallery__item').querySelector('.photo-gallery__title').textContent; // Находим текстовое содержание заголовка элемента "event".
-  popupCaptionElement.textContent = textCardElement; // Присваиваем элементу ранее найденное текстовое содержание.
-  popupImageElement.alt = `Фотография загруженная пользователем «${textCardElement}»`; // Присваиваем элементу ранее найденное текстовое содержание.
-  openPopup(popupImageSectionElement);
-}
-
-// Общая функция для открытия попапов.
-
 
 // Функция для закрытия попапов.
 const closePopup = function () {

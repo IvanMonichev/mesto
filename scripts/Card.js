@@ -1,12 +1,12 @@
-import {cardItems} from './data.js';
 import {
-  cardList,
   popupImageSectionElement,
   popupImageElement,
   popupCaptionElement
-} from './data.js';
+} from './data.js'
 
-class Card {
+import {openPopup} from "./script.js";
+
+export class Card {
 
   _template = document.querySelector(".photo-gallery__item-template").content;
 
@@ -46,35 +46,17 @@ class Card {
     const likeButtonElement = this._element.querySelector('.photo-gallery__like-button');
     likeButtonElement.classList.toggle('photo-gallery__like-button_active');
   }
-
+  
   _openZoomImage() {
     popupImageElement.src = this._link;
     popupCaptionElement.textContent = this._name;
     popupImageElement.alt = `Фотография загруженная пользователем «${this._name}»`;
-    popupImageSectionElement.classList.add("popup_is-opened");
-    document.addEventListener("keydown", closePopupPressOnEsc);
+    openPopup(popupImageSectionElement);
   }
-
+  
   _setEventListeners() {
     this._element.querySelector('.photo-gallery__delete-button').addEventListener('click', this._handleDelete);
     this._element.querySelector('.photo-gallery__like-button').addEventListener('click', this._toggleButtonLike);
     this._element.querySelector('.photo-gallery__image').addEventListener('click', this._openZoomImage);
-
   }
 }
-
-const renderCards = () => {
-  cardItems.forEach((item) => {
-    const card = new Card(item);
-    const cardElement = card.generateCard();
-    cardList.prepend(cardElement);
-
-  });
-};
-
-renderCards();
-
-const openPopup = (popup) => {
-  popup.classList.add("popup_is-opened");
-  document.addEventListener("keydown", closePopupPressOnEsc);
-};

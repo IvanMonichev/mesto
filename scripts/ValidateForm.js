@@ -1,7 +1,4 @@
-const popupEditSectionElement = document.querySelector(".popup-edit-profile");
-const popupAddSectionElement = document.querySelector(".popup-add-card");
-
-class ValidateForm {
+export class ValidateForm {
   constructor(formElement, data) {
     this._input = data.inputSelector;
     this._inputError = data.inputErrorClass;
@@ -66,16 +63,5 @@ class ValidateForm {
   enableValidation() {
     this._setEventListenersInputs();
   };
-
-  consoleNotification() {
-    console.log(this);
-  }
 }
 
-const formComponents = {
-  inputSelector: '.popup__text-input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'button-inactive',
-  inputErrorClass: 'popup__input-text_type_error',
-  errorClass: 'popup__input-error_visible'
-}

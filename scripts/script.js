@@ -16,7 +16,18 @@ import {
   popupAddFormElement,
   popupAddTitleInputElement,
   popupAddLinkTitleInputElement,
-} from './data.js'
+
+  cardList,
+  popupImageSectionElement,
+  popupImageElement,
+  popupCaptionElement,
+
+  cardItems,
+
+  formComponents
+} from './data.js';
+
+import { ValidateForm } from './ValidateForm.js'
 
 const generateValuesInputsEditPopup = () => {
   popupEditNameInputElement.value = profileTitleElement.textContent;
@@ -101,4 +112,11 @@ popupEditButtonElement.addEventListener("click", openEditPopup);
 popupAddButtonElement.addEventListener("click", openAddPopup);
 popupCloseButtonElements.forEach((item) => item.addEventListener("click", closePopup));
 popupElements.forEach((item) => item.addEventListener("click", closePopupClickOnOverlay));
+
+// Установка валидации
+const popupEditSectionValidation = new ValidateForm(popupEditSectionElement, formComponents);
+const popupAddSectionValidation = new ValidateForm(popupAddSectionElement, formComponents);
+
+popupEditSectionValidation.enableValidation();
+popupAddSectionValidation.enableValidation();
 

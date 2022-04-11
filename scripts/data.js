@@ -44,6 +44,14 @@ const cardItems = [{
   name: "Кисловодск", link: "./images/photo-6.jpg",
 }];
 
+/* Validation */
+const formComponents = {
+  inputSelector: '.popup__text-input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'button-inactive',
+  inputErrorClass: 'popup__input-text_type_error',
+  errorClass: 'popup__input-error_visible'
+}
 
 export {
   profileTitleElement,
@@ -69,5 +77,7 @@ export {
   popupImageElement, 
   popupCaptionElement,
   
-  cardItems
+  cardItems,
+
+  formComponents
 };

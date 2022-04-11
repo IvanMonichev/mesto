@@ -1,4 +1,4 @@
-import {cardItems} from './cardItems.js';
+import {cardItems} from './data.js';
 import {
   cardList,
   popupImageSectionElement,

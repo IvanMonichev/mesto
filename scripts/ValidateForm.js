@@ -1,5 +1,6 @@
 const popupEditSectionElement = document.querySelector(".popup-edit-profile");
 const popupAddSectionElement = document.querySelector(".popup-add-card");
+
 class ValidateForm {
   constructor(formElement, data) {
     this._input = data.inputSelector;
@@ -11,7 +12,6 @@ class ValidateForm {
     this._formElement = formElement;
     this._inputList = Array.from(this._formElement.querySelectorAll(this._input));
     this._buttonElement = this._formElement.querySelector(this._button);
-    
   }
 
   _showInputError(inputElement) {
@@ -60,14 +60,12 @@ class ValidateForm {
       });
       this._toggleButtonState();
     });
-    /*toggleButtonState(inputList, buttonElement, formComponents);*/
+    
   }
   
   enableValidation() {
     this._setEventListenersInputs();
   };
-  
-  
 
   consoleNotification() {
     console.log(this);
@@ -80,7 +78,4 @@ const formComponents = {
   inactiveButtonClass: 'button-inactive',
   inputErrorClass: 'popup__input-text_type_error',
   errorClass: 'popup__input-error_visible'
-};
-
-
-
+}

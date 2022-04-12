@@ -4,7 +4,7 @@ import {
   popupCaptionElement
 } from './data.js'
 
-import {openPopup} from "./script.js";
+import {openPopup} from "./utils.js";
 
 export class Card {
 

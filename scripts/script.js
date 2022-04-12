@@ -26,6 +26,7 @@ import {
 
 import {Card} from './Card.js'
 import {ValidateForm} from './ValidateForm.js'
+import {openPopup} from "./utils.js"
 
 const generateValuesInputsEditPopup = () => {
   popupEditNameInputElement.value = profileTitleElement.textContent;
@@ -33,12 +34,6 @@ const generateValuesInputsEditPopup = () => {
 }
 
 generateValuesInputsEditPopup();
-
-const openPopup = (popup) => {
-  popup.classList.add("popup_is-opened");
-  document.addEventListener("keydown", closePopupPressOnEsc);
-
-};
 
 // Функция для открытия попапа формы "Редактировать профиль"
 const openEditPopup = () => {
@@ -132,4 +127,3 @@ const popupAddSectionValidation = new ValidateForm(popupAddSectionElement, formC
 popupEditSectionValidation.enableValidation();
 popupAddSectionValidation.enableValidation();
 
-export {openPopup}

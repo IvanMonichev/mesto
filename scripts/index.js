@@ -16,17 +16,30 @@ import {
   popupAddFormElement,
   popupAddTitleInputElement,
   popupAddLinkTitleInputElement,
-  
- 
-  
+
   cardList,
   cardItems,
   formComponents
 } from './data.js';
 
 import {Card} from './Card.js'
-import {ValidateForm} from './ValidateForm.js'
-import {openPopup} from "./utils.js"
+import {FormValidator} from './FormValidator.js'
+import {closePopup, openPopup} from "./utils.js"
+
+const renderCard = (item) => {
+  const card = new Card(item);
+  const cardElement = card.generateCard();
+  cardList.prepend(cardElement);
+}
+
+// Создание карточек.
+const renderCards = () => {
+  cardItems.forEach((item) => {
+    renderCard(item);
+  });
+};
+
+renderCards();
 
 const generateValuesInputsEditPopup = () => {
   popupEditNameInputElement.value = profileTitleElement.textContent;
@@ -34,6 +47,15 @@ const generateValuesInputsEditPopup = () => {
 }
 
 generateValuesInputsEditPopup();
+
+// Установка валидации
+const popupEditSectionValidation = new FormValidator(popupEditSectionElement, formComponents);
+const popupAddSectionValidation = new FormValidator(popupAddSectionElement, formComponents);
+
+popupEditSectionValidation.enableValidation();
+popupAddSectionValidation.enableValidation();
+
+
 
 // Функция для открытия попапа формы "Редактировать профиль"
 const openEditPopup = () => {
@@ -52,15 +74,6 @@ const openAddPopup = () => {
   openPopup(popupAddSectionElement);
 }
 
-// Функция для закрытия попапов.
-const closePopup = function () {
-  const popupIsOpened = document.querySelector('.popup_is-opened');
-  if (popupIsOpened) {
-    popupIsOpened.classList.remove('popup_is-opened');
-    document.removeEventListener("keydown", closePopupPressOnEsc);
-  }
-};
-
 // Функция для закрытия попапа по клику на затемненную область.
 const closePopupClickOnOverlay = function (event) {
   if (event.target !== event.currentTarget) {
@@ -68,15 +81,6 @@ const closePopupClickOnOverlay = function (event) {
   }
   closePopup();
 };
-
-const closePopupPressOnEsc = (event) => {
-  if (event.key === "Escape") {
-    const popupIsOpened = document.querySelector('.popup_is-opened');
-    if (popupIsOpened) {
-      closePopup();
-    }
-  }
-}
 
 // Функция для изменение значений по событию попапа "EditProfile" "Submit"
 function handleProfileFormSubmit(evt) {
@@ -106,24 +110,5 @@ popupAddButtonElement.addEventListener("click", openAddPopup);
 popupCloseButtonElements.forEach((item) => item.addEventListener("click", closePopup));
 popupElements.forEach((item) => item.addEventListener("click", closePopupClickOnOverlay));
 
-// Создание карточек.
-const renderCards = () => {
-  cardItems.forEach((item) => {
-    const card = new Card(item);
-    const cardElement = card.generateCard();
-    cardList.prepend(cardElement);
 
-  });
-};
-
-renderCards();
-
-
-
-// Установка валидации
-const popupEditSectionValidation = new ValidateForm(popupEditSectionElement, formComponents);
-const popupAddSectionValidation = new ValidateForm(popupAddSectionElement, formComponents);
-
-popupEditSectionValidation.enableValidation();
-popupAddSectionValidation.enableValidation();
 

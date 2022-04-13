@@ -21,6 +21,7 @@ const popupAddTitleInputElement = popupAddFormElement.querySelector(".popup__tex
 const popupAddLinkTitleInputElement = popupAddFormElement.querySelector(".popup__text-input_type_link");
 
 /* --Gallery-- */
+const photoGalleryItemTemplateElement = document.querySelector(".photo-gallery__item-template");
 const cardList = document.querySelector(".photo-gallery__list");
 
 /* Popup Image */
@@ -71,7 +72,8 @@ export {
   popupAddFormElement,
   popupAddTitleInputElement,
   popupAddLinkTitleInputElement,
-  
+
+  photoGalleryItemTemplateElement,
   cardList, 
   popupImageSectionElement, 
   popupImageElement, 

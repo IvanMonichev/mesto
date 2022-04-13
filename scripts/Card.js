@@ -8,9 +8,10 @@ import {openPopup} from "./utils.js";
 
 export class Card {
 
-  _template = document.querySelector(".photo-gallery__item-template").content;
+  /*_template = document.querySelector(".photo-gallery__item-template").content;*/
 
-  constructor(data) {
+  constructor(templateElement, data) {
+    this._templateContent = templateElement.content;
     this._name = data.name;
     this._link = data.link;
 
@@ -21,7 +22,7 @@ export class Card {
 
   // Получаем шаблон карточки.
   _getTemplate() {
-    const cardElement = this._template.querySelector('.photo-gallery__item').cloneNode(true);
+    const cardElement = this._templateContent.querySelector('.photo-gallery__item').cloneNode(true);
     return cardElement;
   }
 

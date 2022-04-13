@@ -17,6 +17,7 @@ import {
   popupAddTitleInputElement,
   popupAddLinkTitleInputElement,
 
+  photoGalleryItemTemplateElement,
   cardList,
   cardItems,
   formComponents
@@ -26,16 +27,21 @@ import {Card} from './Card.js'
 import {FormValidator} from './FormValidator.js'
 import {closePopup, openPopup} from "./utils.js"
 
-const renderCard = (item) => {
-  const card = new Card(item);
-  const cardElement = card.generateCard();
-  cardList.prepend(cardElement);
+
+
+const createCard = (templateElement, item) => {
+  const card = new Card(templateElement, item);
+  return card.generateCard();
+}
+
+const renderCard = (templateElement, item) => {
+  cardList.prepend(createCard(templateElement, item));
 }
 
 // Создание карточек.
 const renderCards = () => {
   cardItems.forEach((item) => {
-    renderCard(item);
+    renderCard(photoGalleryItemTemplateElement, item);
   });
 };
 

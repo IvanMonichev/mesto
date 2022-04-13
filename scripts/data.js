@@ -45,6 +45,12 @@ const cardItems = [{
   name: "Кисловодск", link: "./images/photo-6.jpg",
 }];
 
+const cardComponents = {
+  likeButton: '.photo-gallery__like-button',
+  deleteButton: '.photo-gallery__delete-button',
+  cardImage: '.photo-gallery__image'
+}
+
 /* Validation */
 const formComponents = {
   inputSelector: '.popup__text-input',
@@ -80,6 +86,6 @@ export {
   popupCaptionElement,
   
   cardItems,
-
+  cardComponents,
   formComponents
 };

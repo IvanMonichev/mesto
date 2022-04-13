@@ -20,6 +20,7 @@ import {
   photoGalleryItemTemplateElement,
   cardList,
   cardItems,
+  cardComponents,
   formComponents
 } from './data.js';
 
@@ -29,19 +30,19 @@ import {closePopup, openPopup} from "./utils.js"
 
 
 
-const createCard = (templateElement, item) => {
-  const card = new Card(templateElement, item);
+const createCard = (item) => {
+  const card = new Card(photoGalleryItemTemplateElement, cardComponents, item);
   return card.generateCard();
 }
 
-const renderCard = (templateElement, item) => {
-  cardList.prepend(createCard(templateElement, item));
+const renderCard = (item) => {
+  cardList.prepend(createCard(item));
 }
 
 // Создание карточек.
 const renderCards = () => {
   cardItems.forEach((item) => {
-    renderCard(photoGalleryItemTemplateElement, item);
+    renderCard(item);
   });
 };
 

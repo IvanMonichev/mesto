@@ -1,19 +1,21 @@
 import {
   popupImageSectionElement,
   popupImageElement,
-  popupCaptionElement
+  popupCaptionElement, cardItems
 } from './data.js'
 
 import {openPopup} from "./utils.js";
 
 export class Card {
 
-  /*_template = document.querySelector(".photo-gallery__item-template").content;*/
-
-  constructor(templateElement, data) {
+  constructor(templateElement, cardComponents, cardItems) {
     this._templateContent = templateElement.content;
-    this._name = data.name;
-    this._link = data.link;
+    this._name = cardItems.name;
+    this._link = cardItems.link;
+
+    this._likeButton = cardComponents.likeButton;
+    this._deleteButton = cardComponents.deleteButton;
+    this._cardImage = cardComponents.cardImage;
 
     this._handleDelete = this._handleDelete.bind(this);
     this._toggleButtonLike = this._toggleButtonLike.bind(this);
@@ -44,8 +46,7 @@ export class Card {
   }
 
   _toggleButtonLike() {
-    const likeButtonElement = this._element.querySelector('.photo-gallery__like-button');
-    likeButtonElement.classList.toggle('photo-gallery__like-button_active');
+    this._likeButtonElement.classList.toggle('photo-gallery__like-button_active');
   }
   
   _openZoomImage() {
@@ -56,8 +57,12 @@ export class Card {
   }
   
   _setEventListeners() {
-    this._element.querySelector('.photo-gallery__delete-button').addEventListener('click', this._handleDelete);
-    this._element.querySelector('.photo-gallery__like-button').addEventListener('click', this._toggleButtonLike);
-    this._element.querySelector('.photo-gallery__image').addEventListener('click', this._openZoomImage);
+    this._deleteButtonElement = this._element.querySelector(this._deleteButton);
+    this._likeButtonElement = this._element.querySelector(this._likeButton);
+    this._cardImageElement = this._element.querySelector(this._cardImage);
+
+    this._deleteButtonElement.addEventListener('click', this._handleDelete);
+    this._likeButtonElement.addEventListener('click', this._toggleButtonLike);
+    this._cardImageElement.addEventListener('click', this._openZoomImage);
   }
 }

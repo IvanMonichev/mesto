@@ -1,14 +1,6 @@
-import {
-  popupImageSectionElement,
-  popupImageElement,
-  popupCaptionElement, cardItems
-} from './data.js'
-
-import {openPopup} from "./utils.js";
-
 export class Card {
 
-  constructor(templateElement, cardComponents, cardItems) {
+  constructor(templateElement, cardComponents, handleCardClick, cardItems) {
     this._templateContent = templateElement.content;
     this._name = cardItems.name;
     this._link = cardItems.link;
@@ -17,9 +9,10 @@ export class Card {
     this._deleteButton = cardComponents.deleteButton;
     this._cardImage = cardComponents.cardImage;
 
+    this._handleCardClick = handleCardClick;
+
     this._handleDelete = this._handleDelete.bind(this);
     this._toggleButtonLike = this._toggleButtonLike.bind(this);
-    this._openZoomImage = this._openZoomImage.bind(this);
   }
 
   // Получаем шаблон карточки.
@@ -49,12 +42,12 @@ export class Card {
     this._likeButtonElement.classList.toggle('photo-gallery__like-button_active');
   }
   
-  _openZoomImage() {
+/*  _openZoomImage() {
     popupImageElement.src = this._link;
     popupCaptionElement.textContent = this._name;
     popupImageElement.alt = `Фотография загруженная пользователем «${this._name}»`;
     openPopup(popupImageSectionElement);
-  }
+  }*/
   
   _setEventListeners() {
     this._deleteButtonElement = this._element.querySelector(this._deleteButton);
@@ -63,6 +56,6 @@ export class Card {
 
     this._deleteButtonElement.addEventListener('click', this._handleDelete);
     this._likeButtonElement.addEventListener('click', this._toggleButtonLike);
-    this._cardImageElement.addEventListener('click', this._openZoomImage);
+    this._cardImageElement.addEventListener('click', () => this._handleCardClick(this._name, this._link));
   }
 }

@@ -17,6 +17,10 @@ import {
   popupAddTitleInputElement,
   popupAddLinkTitleInputElement,
 
+  popupImageSectionElement,
+  popupImageElement,
+  popupCaptionElement,
+
   photoGalleryItemTemplateElement,
   cardList,
   cardItems,
@@ -28,10 +32,15 @@ import {Card} from './Card.js'
 import {FormValidator} from './FormValidator.js'
 import {closePopup, openPopup} from "./utils.js"
 
-
+const handleCardClick = (name, link) => {
+  popupImageElement.src = link;
+  popupCaptionElement.textContent = name;
+  popupImageElement.alt = `Фотография загруженная пользователем «${name}»`;
+  openPopup(popupImageSectionElement);
+}
 
 const createCard = (item) => {
-  const card = new Card(photoGalleryItemTemplateElement, cardComponents, item);
+  const card = new Card(photoGalleryItemTemplateElement, cardComponents, handleCardClick, item);
   return card.generateCard();
 }
 

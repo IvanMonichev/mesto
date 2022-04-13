@@ -76,17 +76,18 @@ popupAddSectionValidation.enableValidation();
 // Функция для открытия попапа формы "Редактировать профиль"
 const openEditPopup = () => {
   generateValuesInputsEditPopup();
+  popupEditSectionValidation.resetValidation();
   openPopup(popupEditSectionElement);
 }
 
 // Функция для открытия попапа формы "Новое место"
 const openAddPopup = () => {
   const popupSaveButtonElement = popupAddSectionElement.querySelector('.popup__save-button');
-
   popupAddTitleInputElement.value = '';
   popupAddLinkTitleInputElement.value = '';
   popupSaveButtonElement.classList.add("button-inactive");
   popupSaveButtonElement.setAttribute("disabled", true);
+  popupAddSectionValidation.resetValidation();
   openPopup(popupAddSectionElement);
 }
 

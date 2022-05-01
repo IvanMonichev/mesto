@@ -42,13 +42,6 @@ export class Card {
     this._likeButtonElement.classList.toggle('photo-gallery__like-button_active');
   }
   
-/*  _openZoomImage() {
-    popupImageElement.src = this._link;
-    popupCaptionElement.textContent = this._name;
-    popupImageElement.alt = `Фотография загруженная пользователем «${this._name}»`;
-    openPopup(popupImageSectionElement);
-  }*/
-  
   _setEventListeners() {
     this._deleteButtonElement = this._element.querySelector(this._deleteButton);
     this._likeButtonElement = this._element.querySelector(this._likeButton);

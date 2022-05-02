@@ -89,14 +89,6 @@ const openAddPopup = () => {
   openPopup(popupAddSectionElement);
 }
 
-// Функция для закрытия попапа по клику на затемненную область.
-const closePopupClickOnOverlay = function (event) {
-  if (event.target !== event.currentTarget) {
-    return;
-  }
-  closePopup();
-};
-
 // Функция для изменение значений по событию попапа "EditProfile" "Submit"
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -122,7 +114,6 @@ popupEditFormElement.addEventListener("submit", handleProfileFormSubmit);
 popupAddFormElement.addEventListener("submit", handleAddCardFormSubmit);
 popupEditButtonElement.addEventListener("click", openEditPopup);
 popupAddButtonElement.addEventListener("click", openAddPopup);
-popupCloseButtonElements.forEach((item) => item.addEventListener("click", closePopup));
 popupElements.forEach((item) => item.addEventListener("click", closePopupClickOnOverlay));
 
 

@@ -22,7 +22,7 @@ import {
   popupCaptionElement,
 
   photoGalleryItemTemplateElement,
-  cardList,
+  cardListSelector,
   cardItems,
   cardComponents,
   formComponents
@@ -30,32 +30,44 @@ import {
 
 import {Card} from './Card.js'
 import {FormValidator} from './FormValidator.js'
-import {closePopup, openPopup} from "./utils.js"
+import {Section} from "./Section.js";
 
-const handleCardClick = (name, link) => {
+const createCard = (item) => {
+  const card = new Card(photoGalleryItemTemplateElement, cardComponents, item);
+  return card.generateCard();
+}
+
+const cardList = new Section ({
+  items: cardItems,
+  renderer: (item) => {
+    const card = createCard(item);
+    cardList.addItem(card);
+  }
+}, cardListSelector)
+
+cardList.render();
+
+/*const handleCardClick = (name, link) => {
   popupImageElement.src = link;
   popupCaptionElement.textContent = name;
   popupImageElement.alt = `Фотография загруженная пользователем «${name}»`;
   openPopup(popupImageSectionElement);
-}
+}*/
 
-const createCard = (item) => {
-  const card = new Card(photoGalleryItemTemplateElement, cardComponents, handleCardClick, item);
-  return card.generateCard();
-}
 
-const renderCard = (item) => {
+
+/*const renderCard = (item) => {
   cardList.prepend(createCard(item));
-}
+}*/
 
 // Создание карточек.
-const renderCards = () => {
+/*const renderCards = () => {
   cardItems.forEach((item) => {
     renderCard(item);
   });
-};
+};*/
 
-renderCards();
+/*renderCards();*/
 
 const generateValuesInputsEditPopup = () => {
   popupEditNameInputElement.value = profileTitleElement.textContent;
@@ -73,6 +85,10 @@ popupAddSectionValidation.enableValidation();
 
 
 
+
+
+
+/* ===OLD CODE==== */
 // Функция для открытия попапа формы "Редактировать профиль"
 const openEditPopup = () => {
   generateValuesInputsEditPopup();
@@ -114,7 +130,6 @@ popupEditFormElement.addEventListener("submit", handleProfileFormSubmit);
 popupAddFormElement.addEventListener("submit", handleAddCardFormSubmit);
 popupEditButtonElement.addEventListener("click", openEditPopup);
 popupAddButtonElement.addEventListener("click", openAddPopup);
-popupElements.forEach((item) => item.addEventListener("click", closePopupClickOnOverlay));
 
 
 

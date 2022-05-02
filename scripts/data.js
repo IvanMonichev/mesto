@@ -22,7 +22,7 @@ const popupAddLinkTitleInputElement = popupAddFormElement.querySelector(".popup_
 
 /* --Gallery-- */
 const photoGalleryItemTemplateElement = document.querySelector(".photo-gallery__item-template");
-const cardList = document.querySelector(".photo-gallery__list");
+const cardListSelector = ".photo-gallery__list";
 
 /* Popup Image */
 const popupImageSectionElement = document.querySelector('.image-zoom');
@@ -80,7 +80,7 @@ export {
   popupAddLinkTitleInputElement,
 
   photoGalleryItemTemplateElement,
-  cardList, 
+  cardListSelector,
   popupImageSectionElement, 
   popupImageElement, 
   popupCaptionElement,

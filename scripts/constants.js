@@ -25,10 +25,8 @@ const photoGalleryItemTemplateElement = document.querySelector(".photo-gallery__
 const cardListSelector = ".photo-gallery__list";
 
 /* Popup Image */
-const popupImageSectionElement = document.querySelector('.image-zoom');
-const popupImageContainerElement = popupImageSectionElement.querySelector('.image-zoom__container');
-const popupImageElement = popupImageContainerElement.querySelector('.image-zoom__image');
-const popupCaptionElement = popupImageContainerElement.querySelector('.image-zoom__caption');
+const popupImageSectionElement = '.image-zoom';
+
 
 /* Массив карточек */
 const cardItems = [{
@@ -81,9 +79,7 @@ export {
 
   photoGalleryItemTemplateElement,
   cardListSelector,
-  popupImageSectionElement, 
-  popupImageElement, 
-  popupCaptionElement,
+  popupImageSectionElement,
   
   cardItems,
   cardComponents,

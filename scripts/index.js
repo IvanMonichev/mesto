@@ -18,25 +18,33 @@ import {
   popupAddLinkTitleInputElement,
 
   popupImageSectionElement,
-  popupImageElement,
-  popupCaptionElement,
 
   photoGalleryItemTemplateElement,
   cardListSelector,
   cardItems,
   cardComponents,
   formComponents
-} from './data.js';
+} from './constants.js';
 
 import {Card} from './Card.js'
 import {FormValidator} from './FormValidator.js'
 import {Section} from "./Section.js";
+import PopupWithImage from "./PopupWithImage.js";
 
+const popupImage = new PopupWithImage(popupImageSectionElement);
+popupImage.setEventListeners()
+
+// Создание карточки
 const createCard = (item) => {
-  const card = new Card(photoGalleryItemTemplateElement, cardComponents, item);
+  const card = new Card({
+    cardItems: item,
+    handleCardClick: () => {
+      popupImage.open(item);
+    }}, cardComponents, photoGalleryItemTemplateElement);
   return card.generateCard();
 }
 
+// Генерация карточек в необходимую секцию.
 const cardList = new Section ({
   items: cardItems,
   renderer: (item) => {
@@ -46,28 +54,6 @@ const cardList = new Section ({
 }, cardListSelector)
 
 cardList.render();
-
-/*const handleCardClick = (name, link) => {
-  popupImageElement.src = link;
-  popupCaptionElement.textContent = name;
-  popupImageElement.alt = `Фотография загруженная пользователем «${name}»`;
-  openPopup(popupImageSectionElement);
-}*/
-
-
-
-/*const renderCard = (item) => {
-  cardList.prepend(createCard(item));
-}*/
-
-// Создание карточек.
-/*const renderCards = () => {
-  cardItems.forEach((item) => {
-    renderCard(item);
-  });
-};*/
-
-/*renderCards();*/
 
 const generateValuesInputsEditPopup = () => {
   popupEditNameInputElement.value = profileTitleElement.textContent;

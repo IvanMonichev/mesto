@@ -1,6 +1,10 @@
 // --Section Profile--
-const profileTitleElement = document.querySelector(".profile__title");
-const profileSubtitleElement = document.querySelector(".profile__subtitle");
+
+const profileElements = {
+  name: ".profile__title",
+  about: ".profile__subtitle"
+}
+
 const popupEditButtonElement = document.querySelector(".profile__edit-button");
 const popupAddButtonElement = document.querySelector(".profile__add-button");
 
@@ -10,9 +14,9 @@ const popupCloseButtonElements = document.querySelectorAll(".popup__close-button
 
 // --Edit Popup--
 const popupEditSectionElement = ".popup-edit-profile"
-const popupEditFormElement = document.querySelector(".popup__container");
-const popupEditNameInputElement = popupEditFormElement.querySelector(".popup__text-input_type_name");
-const popupEditAboutInputElement = popupEditFormElement.querySelector(".popup__text-input_type_about");
+const popupEditNameInput = document.querySelector(".popup__text-input_type_name");
+const popupEditAboutInput = document.querySelector(".popup__text-input_type_about");
+
 
 // --Add Popup--
 const popupAddSectionElement = ".popup-add-card"
@@ -59,8 +63,7 @@ const formComponents = {
 }
 
 export {
-  profileTitleElement,
-  profileSubtitleElement,
+  profileElements,
   popupEditButtonElement,
   popupAddButtonElement,
 
@@ -68,9 +71,8 @@ export {
   popupCloseButtonElements,
 
   popupEditSectionElement,
-  popupEditFormElement,
-  popupEditNameInputElement,
-  popupEditAboutInputElement,
+  popupEditNameInput,
+  popupEditAboutInput,
 
   popupAddSectionElement,
   popupAddFormElement,

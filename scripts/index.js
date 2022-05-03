@@ -1,6 +1,5 @@
 import {
-  profileTitleElement,
-  profileSubtitleElement,
+  profileElements,
   popupEditButtonElement,
   popupAddButtonElement,
 
@@ -8,9 +7,8 @@ import {
   popupCloseButtonElements,
 
   popupEditSectionElement,
-  popupEditFormElement,
-  popupEditNameInputElement,
-  popupEditAboutInputElement,
+  popupEditNameInput,
+  popupEditAboutInput,
 
   popupAddSectionElement,
   popupAddFormElement,
@@ -31,6 +29,7 @@ import {FormValidator} from './FormValidator.js'
 import {Section} from "./Section.js";
 import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
+import {UserInfo} from "./UserInfo.js";
 
 const popupImage = new PopupWithImage(popupImageSectionElement);
 popupImage.setEventListeners()
@@ -65,28 +64,34 @@ const popupFormAddCard = new PopupWithForm(popupAddSectionElement, handleSubmitF
 
 popupFormAddCard.setEventListeners()
 
+const userInfo = new UserInfo(profileElements)
+
+const popupFormEditProfile = new PopupWithForm(popupEditSectionElement, handleSubmitForm => {
+  userInfo.setUserInfo(popupEditNameInput, popupEditAboutInput);
+})
+
+popupFormEditProfile.setEventListeners();
 
 popupAddButtonElement.addEventListener("click", () => {
   popupFormAddCard.open();
 });
 
+popupEditButtonElement.addEventListener('click', () => {
+  const userData = userInfo.getUserInfo();
+  popupEditNameInput.value = userData.name;
+  popupEditAboutInput.value = userData.about;
+  
+  popupFormEditProfile.open();
+})
 
-const generateValuesInputsEditPopup = () => {
-  popupEditNameInputElement.value = profileTitleElement.textContent;
-  popupEditAboutInputElement.value = profileSubtitleElement.textContent;
-}
-
-generateValuesInputsEditPopup();
 
 // Установка валидации
-/*
 const popupEditSectionValidation = new FormValidator(popupEditSectionElement, formComponents);
 const popupAddSectionValidation = new FormValidator(popupAddSectionElement, formComponents);
 
 popupEditSectionValidation.enableValidation();
 popupAddSectionValidation.enableValidation();
 
-*/
 
 
 /* ===OLD CODE==== */
@@ -100,24 +105,12 @@ const openEditPopup = () => {
 */
 
 /*
-// Функция для открытия попапа формы "Новое место"
-const openAddPopup = () => {
-  const popupSaveButtonElement = popupAddSectionElement.querySelector('.popup__save-button');
-  popupAddTitleInputElement.value = '';
-  popupAddLinkTitleInputElement.value = '';
-  popupAddSectionValidation.resetValidation();
-  openPopup(popupAddSectionElement);
-}
+
 
 // Функция для изменение значений по событию попапа "EditProfile" "Submit"
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
-  // Сохраняем новые значения.
-  profileTitleElement.textContent = popupEditNameInputElement.value;
-  profileSubtitleElement.textContent = popupEditAboutInputElement.value;
-  closePopup();
-}
 
 // Функция для добавления карточки на сайт по событию "Submit"
 function handleAddCardFormSubmit(evt) {

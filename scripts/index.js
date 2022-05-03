@@ -30,6 +30,7 @@ import {Card} from './Card.js'
 import {FormValidator} from './FormValidator.js'
 import {Section} from "./Section.js";
 import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
 
 const popupImage = new PopupWithImage(popupImageSectionElement);
 popupImage.setEventListeners()
@@ -40,12 +41,13 @@ const createCard = (item) => {
     cardItems: item,
     handleCardClick: () => {
       popupImage.open(item);
-    }}, cardComponents, photoGalleryItemTemplateElement);
+    }
+  }, cardComponents, photoGalleryItemTemplateElement);
   return card.generateCard();
 }
 
 // Генерация карточек в необходимую секцию.
-const cardList = new Section ({
+const cardList = new Section({
   items: cardItems,
   renderer: (item) => {
     const card = createCard(item);
@@ -55,6 +57,20 @@ const cardList = new Section ({
 
 cardList.render();
 
+const popupFormAddCard = new PopupWithForm(popupAddSectionElement, handleSubmitForm => {
+    const card = createCard(handleSubmitForm);
+    cardList.addItem(card);
+  }
+)
+
+popupFormAddCard.setEventListeners()
+
+
+popupAddButtonElement.addEventListener("click", () => {
+  popupFormAddCard.open();
+});
+
+
 const generateValuesInputsEditPopup = () => {
   popupEditNameInputElement.value = profileTitleElement.textContent;
   popupEditAboutInputElement.value = profileSubtitleElement.textContent;
@@ -63,25 +79,27 @@ const generateValuesInputsEditPopup = () => {
 generateValuesInputsEditPopup();
 
 // Установка валидации
+/*
 const popupEditSectionValidation = new FormValidator(popupEditSectionElement, formComponents);
 const popupAddSectionValidation = new FormValidator(popupAddSectionElement, formComponents);
 
 popupEditSectionValidation.enableValidation();
 popupAddSectionValidation.enableValidation();
 
-
-
-
+*/
 
 
 /* ===OLD CODE==== */
 // Функция для открытия попапа формы "Редактировать профиль"
+/*
 const openEditPopup = () => {
   generateValuesInputsEditPopup();
   popupEditSectionValidation.resetValidation();
   openPopup(popupEditSectionElement);
 }
+*/
 
+/*
 // Функция для открытия попапа формы "Новое место"
 const openAddPopup = () => {
   const popupSaveButtonElement = popupAddSectionElement.querySelector('.popup__save-button');
@@ -110,12 +128,15 @@ function handleAddCardFormSubmit(evt) {
 
   closePopup();
 }
+*/
 
 // Регистрация обработчиков события.
+/*
 popupEditFormElement.addEventListener("submit", handleProfileFormSubmit);
 popupAddFormElement.addEventListener("submit", handleAddCardFormSubmit);
 popupEditButtonElement.addEventListener("click", openEditPopup);
 popupAddButtonElement.addEventListener("click", openAddPopup);
+*/
 
 
 

@@ -9,14 +9,14 @@ const popupElements = document.querySelectorAll(".popup");
 const popupCloseButtonElements = document.querySelectorAll(".popup__close-button");
 
 // --Edit Popup--
-const popupEditSectionElement = document.querySelector(".popup-edit-profile"); // Находим секцию "Редактирование профиля".
-const popupEditFormElement = popupEditSectionElement.querySelector(".popup__container");
-const popupEditNameInputElement = popupEditSectionElement.querySelector(".popup__text-input_type_name");
-const popupEditAboutInputElement = popupEditSectionElement.querySelector(".popup__text-input_type_about");
+const popupEditSectionElement = ".popup-edit-profile"
+const popupEditFormElement = document.querySelector(".popup__container");
+const popupEditNameInputElement = popupEditFormElement.querySelector(".popup__text-input_type_name");
+const popupEditAboutInputElement = popupEditFormElement.querySelector(".popup__text-input_type_about");
 
 // --Add Popup--
-const popupAddSectionElement = document.querySelector(".popup-add-card");
-const popupAddFormElement = popupAddSectionElement.querySelector(".popup__container");
+const popupAddSectionElement = ".popup-add-card"
+const popupAddFormElement = document.querySelector(".popup__container");
 const popupAddTitleInputElement = popupAddFormElement.querySelector(".popup__text-input_type_title");
 const popupAddLinkTitleInputElement = popupAddFormElement.querySelector(".popup__text-input_type_link");
 

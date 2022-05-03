@@ -1,6 +1,6 @@
 export class Card {
 
-  constructor({cardItems, handleCardClick}, cardComponents, templateElement) {
+  constructor({cardItems,  handleCardClick }, cardComponents, templateElement) {
     this._templateContent = templateElement.content;
     
     this._name = cardItems.name;
@@ -25,7 +25,6 @@ export class Card {
   // Генерируем карточку.
   generateCard() {
     this._element = this._getTemplate();
-
     this._element.querySelector(".photo-gallery__title").textContent = this._name;
     this._element.querySelector(".photo-gallery__image").src = this._link;
     this._element.querySelector(".photo-gallery__image").alt = `Фотография загруженная пользователем «${this._name}»`;

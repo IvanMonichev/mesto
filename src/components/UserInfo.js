@@ -13,9 +13,9 @@ export class UserInfo {
     return this._userData;
   }
 
-  setUserInfo(nameInput, aboutInput) {
-    this._userName.textContent = nameInput.value;
-    this._userAbout.textContent = aboutInput.value;
+  setUserInfo(nameData, aboutData) {
+    this._userName.textContent = nameData.value;
+    this._userAbout.textContent = aboutData.value;
   }
 
 }

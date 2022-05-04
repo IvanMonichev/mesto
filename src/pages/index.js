@@ -31,11 +31,11 @@ const popupImage = new PopupWithImage(popupImageSectionElement);
 popupImage.setEventListeners()
 
 // Создание карточки
-const createCard = (item) => {
+const createCard = (data) => {
   const card = new Card({
-    cardItems: item,
+    data: data,
     handleCardClick: () => {
-      popupImage.open(item);
+      popupImage.open(data);
     }
   }, cardComponents, photoGalleryItemTemplateSelector);
   return card.generateCard();

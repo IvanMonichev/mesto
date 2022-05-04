@@ -8,10 +8,6 @@ const profileElements = {
 const popupEditButtonElement = document.querySelector(".profile__edit-button");
 const popupAddButtonElement = document.querySelector(".profile__add-button");
 
-// --Popup Elements--
-const popupElements = document.querySelectorAll(".popup");
-const popupCloseButtonElements = document.querySelectorAll(".popup__close-button");
-
 // --Edit Popup--
 const popupEditSectionElement = ".popup-edit-profile"
 const popupEditNameInput = document.querySelector(".popup__text-input_type_name");
@@ -21,8 +17,6 @@ const popupEditAboutInput = document.querySelector(".popup__text-input_type_abou
 // --Add Popup--
 const popupAddSectionElement = ".popup-add-card"
 const popupAddFormElement = document.querySelector(".popup__container");
-const popupAddTitleInputElement = popupAddFormElement.querySelector(".popup__text-input_type_title");
-const popupAddLinkTitleInputElement = popupAddFormElement.querySelector(".popup__text-input_type_link");
 
 /* --Gallery-- */
 const photoGalleryItemTemplateElement = document.querySelector(".photo-gallery__item-template");
@@ -30,7 +24,6 @@ const cardListSelector = ".photo-gallery__list";
 
 /* Popup Image */
 const popupImageSectionElement = '.image-zoom';
-
 
 /* Массив карточек */
 const cardItems = [{
@@ -64,11 +57,9 @@ const formComponents = {
 
 export {
   profileElements,
+
   popupEditButtonElement,
   popupAddButtonElement,
-
-  popupElements,
-  popupCloseButtonElements,
 
   popupEditSectionElement,
   popupEditNameInput,
@@ -76,8 +67,6 @@ export {
 
   popupAddSectionElement,
   popupAddFormElement,
-  popupAddTitleInputElement,
-  popupAddLinkTitleInputElement,
 
   photoGalleryItemTemplateElement,
   cardListSelector,

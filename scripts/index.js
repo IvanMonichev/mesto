@@ -3,17 +3,11 @@ import {
   popupEditButtonElement,
   popupAddButtonElement,
 
-  popupElements,
-  popupCloseButtonElements,
-
   popupEditSectionElement,
   popupEditNameInput,
   popupEditAboutInput,
 
   popupAddSectionElement,
-  popupAddFormElement,
-  popupAddTitleInputElement,
-  popupAddLinkTitleInputElement,
 
   popupImageSectionElement,
 
@@ -56,6 +50,14 @@ const cardList = new Section({
 
 cardList.render();
 
+// Установка валидации.
+const popupEditSectionValidation = new FormValidator(popupEditSectionElement, formComponents);
+const popupAddSectionValidation = new FormValidator(popupAddSectionElement, formComponents);
+
+popupEditSectionValidation.enableValidation();
+popupAddSectionValidation.enableValidation();
+
+// Форма добавления карточки.
 const popupFormAddCard = new PopupWithForm(popupAddSectionElement, handleSubmitForm => {
     const card = createCard(handleSubmitForm);
     cardList.addItem(card);
@@ -64,72 +66,26 @@ const popupFormAddCard = new PopupWithForm(popupAddSectionElement, handleSubmitF
 
 popupFormAddCard.setEventListeners()
 
+// Форма редактирования профиля.
 const userInfo = new UserInfo(profileElements)
 
-const popupFormEditProfile = new PopupWithForm(popupEditSectionElement, handleSubmitForm => {
+const popupFormEditProfile = new PopupWithForm(popupEditSectionElement, () => {
   userInfo.setUserInfo(popupEditNameInput, popupEditAboutInput);
 })
 
 popupFormEditProfile.setEventListeners();
 
+// Слушатели
 popupAddButtonElement.addEventListener("click", () => {
   popupFormAddCard.open();
+  popupAddSectionValidation.resetValidation();
 });
 
 popupEditButtonElement.addEventListener('click', () => {
   const userData = userInfo.getUserInfo();
   popupEditNameInput.value = userData.name;
   popupEditAboutInput.value = userData.about;
-  
+  popupEditSectionValidation.resetValidation();
   popupFormEditProfile.open();
 })
-
-
-// Установка валидации
-const popupEditSectionValidation = new FormValidator(popupEditSectionElement, formComponents);
-const popupAddSectionValidation = new FormValidator(popupAddSectionElement, formComponents);
-
-popupEditSectionValidation.enableValidation();
-popupAddSectionValidation.enableValidation();
-
-
-
-/* ===OLD CODE==== */
-// Функция для открытия попапа формы "Редактировать профиль"
-/*
-const openEditPopup = () => {
-  generateValuesInputsEditPopup();
-  popupEditSectionValidation.resetValidation();
-  openPopup(popupEditSectionElement);
-}
-*/
-
-/*
-
-
-// Функция для изменение значений по событию попапа "EditProfile" "Submit"
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-
-
-// Функция для добавления карточки на сайт по событию "Submit"
-function handleAddCardFormSubmit(evt) {
-  evt.preventDefault();
-  // Проверка на заполнение значений в полях.
-  const card = {name: popupAddTitleInputElement.value, link: popupAddLinkTitleInputElement.value};
-  renderCard(card);
-
-  closePopup();
-}
-*/
-
-// Регистрация обработчиков события.
-/*
-popupEditFormElement.addEventListener("submit", handleProfileFormSubmit);
-popupAddFormElement.addEventListener("submit", handleAddCardFormSubmit);
-popupEditButtonElement.addEventListener("click", openEditPopup);
-popupAddButtonElement.addEventListener("click", openAddPopup);
-*/
-
-
 

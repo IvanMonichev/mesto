@@ -10,6 +10,7 @@ module.exports = {
     filename: 'main.js',
     publicPath: ''
   },
+  mode: "production",
   devServer: {
     static: path.resolve(__dirname, './dist'), // путь, куда "смотрит" режим разработчика
     compress: true,

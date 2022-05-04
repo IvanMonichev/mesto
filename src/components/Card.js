@@ -1,19 +1,19 @@
 export class Card {
 
-  constructor({cardItems,  handleCardClick }, cardComponents, templateElement) {
-    this._templateContent = templateElement.content;
-    
-    this._name = cardItems.name;
-    this._link = cardItems.link;
+  constructor({data,  handleCardClick }, cardComponents, templateSelector) {
+    this._templateContent = document.querySelector(templateSelector).content;
+    this._name = data.name;
+    this._link = data.link;
 
     this._handleCardClick = handleCardClick;
     
-    this._likeButton = cardComponents.likeButton;
-    this._deleteButton = cardComponents.deleteButton;
-    this._cardImage = cardComponents.cardImage;
+    this._likeSelector = cardComponents.likeSelector;
+    this._deleteSelector = cardComponents.deleteSelector;
+    this._cardImageSelector = cardComponents.cardImageSelector;
+    this._titleSelector = cardComponents.titleSelector;
+
 
     this._handleDelete = this._handleDelete.bind(this);
-    this._toggleButtonLike = this._toggleButtonLike.bind(this);
   }
 
   // Получаем шаблон карточки.
@@ -25,9 +25,12 @@ export class Card {
   // Генерируем карточку.
   generateCard() {
     this._element = this._getTemplate();
-    this._element.querySelector(".photo-gallery__title").textContent = this._name;
-    this._element.querySelector(".photo-gallery__image").src = this._link;
-    this._element.querySelector(".photo-gallery__image").alt = `Фотография загруженная пользователем «${this._name}»`;
+    this._cardImageElement = this._element.querySelector(this._cardImageSelector);
+    this._titleElement = this._element.querySelector(this._titleSelector);
+
+    this._titleElement.textContent = this._name;
+    this._cardImageElement.src = this._link;
+    this._cardImageElement.alt = `Фотография загруженная пользователем «${this._name}»`;
 
     this._setEventListeners();
 
@@ -36,6 +39,8 @@ export class Card {
 
   _handleDelete() {
     this._element.remove();
+    this._element = null;
+
   }
 
   _toggleButtonLike() {
@@ -43,12 +48,11 @@ export class Card {
   }
   
   _setEventListeners() {
-    this._deleteButtonElement = this._element.querySelector(this._deleteButton);
-    this._likeButtonElement = this._element.querySelector(this._likeButton);
-    this._cardImageElement = this._element.querySelector(this._cardImage);
+    this._deleteButtonElement = this._element.querySelector(this._deleteSelector);
+    this._likeButtonElement = this._element.querySelector(this._likeSelector);
 
     this._deleteButtonElement.addEventListener('click', this._handleDelete);
-    this._likeButtonElement.addEventListener('click', this._toggleButtonLike);
+    this._likeButtonElement.addEventListener('click', () => this._toggleButtonLike());
     this._cardImageElement.addEventListener('click', () => this._handleCardClick({name: this._name, link: this._link}));
   }
 }

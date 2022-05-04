@@ -26,7 +26,7 @@ const popupAddSectionElement = ".popup-add-card"
 const popupAddFormElement = document.querySelector(".popup__container");
 
 /* --Gallery-- */
-const photoGalleryItemTemplateElement = document.querySelector(".photo-gallery__item-template");
+const photoGalleryItemTemplateSelector = ".photo-gallery__item-template";
 const cardListSelector = ".photo-gallery__list";
 
 /* Popup Image */
@@ -48,9 +48,10 @@ const cardItems = [{
 }];
 
 const cardComponents = {
-  likeButton: '.photo-gallery__like-button',
-  deleteButton: '.photo-gallery__delete-button',
-  cardImage: '.photo-gallery__image'
+  likeSelector: '.photo-gallery__like-button',
+  deleteSelector: '.photo-gallery__delete-button',
+  cardImageSelector: '.photo-gallery__image',
+  titleSelector: '.photo-gallery__title'
 }
 
 /* Validation */
@@ -75,7 +76,7 @@ export {
   popupAddSectionElement,
   popupAddFormElement,
 
-  photoGalleryItemTemplateElement,
+  photoGalleryItemTemplateSelector,
   cardListSelector,
   popupImageSectionElement,
   

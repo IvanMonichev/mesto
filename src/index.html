@@ -8,19 +8,18 @@
   <meta name="description" content="Страница посвящана публикации фотографий красивых мест.">
   <meta name="keywords" content="Путешествия, туризм">
   <meta name="author" content="Ivan Monichev">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 
 <body class="root">
 
 <header class="header">
-  <img src="./images/logo.svg" alt="Логотип Mesto Russia" class="header__logo">
+  <img src="<%=require('./images/logo.svg')%>" alt="Логотип Mesto Russia" class="header__logo">
 </header>
 
 <main class="main">
   <section class="profile">
-    <img src="./images/avatar.png" alt="Аватар профиля" class="profile__avatar">
+    <img src="<%=require('./images/avatar.png')%>" alt="Аватар профиля" class="profile__avatar">
     <div class="profile__info">
       <h1 class="profile__title">Жак-Ив Кусто</h1>
       <button class="profile__edit-button button-action"></button>
@@ -80,14 +79,12 @@
 
 <template class="photo-gallery__item-template">
   <li class="photo-gallery__item">
-    <img src="./images/" alt="Фотография загруженная пользователем «{title}»" class="photo-gallery__image">
+    <img src="images" alt="Фотография загруженная пользователем «{title}»" class="photo-gallery__image">
     <h2 class="photo-gallery__title"></h2>
     <button class="photo-gallery__like-button button-action"></button>
-    <a class="photo-gallery__delete-button button-action"><img src="./images/trash.svg" alt="Корзина удаления"></a>
+    <a class="photo-gallery__delete-button button-action"><img src="<%=require('./images/trash.svg')%>" alt="Корзина удаления"></a>
   </li>
 </template>
-
-<script type="module" src="./scripts/index.js"></script>
 
 </body>
 </html>

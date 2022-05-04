@@ -1,3 +1,10 @@
+import photo1 from "../images/photo-1.jpg";
+import photo2 from "../images/photo-2.jpg";
+import photo3 from "../images/photo-3.jpg";
+import photo4 from "../images/photo-4.jpg";
+import photo5 from "../images/photo-5.jpg";
+import photo6 from "../images/photo-6.jpg";
+
 // --Section Profile--
 
 const profileElements = {
@@ -27,17 +34,17 @@ const popupImageSectionElement = '.image-zoom';
 
 /* Массив карточек */
 const cardItems = [{
-  name: "Карелия", link: "./images/photo-1.jpg",
+  name: "Карелия", link: photo1,
 }, {
-  name: "Санкт-Петербург", link: "./images/photo-2.jpg",
+  name: "Санкт-Петербург", link: photo2,
 }, {
-  name: "Иваново", link: "./images/photo-3.jpg",
+  name: "Иваново", link: photo3,
 }, {
-  name: "Петрозаводск", link: "./images/photo-4.jpg",
+  name: "Петрозаводск", link: photo4,
 }, {
-  name: "Пётр 1", link: "./images/photo-5.jpg",
+  name: "Пётр 1", link: photo5,
 }, {
-  name: "Кисловодск", link: "./images/photo-6.jpg",
+  name: "Кисловодск", link: photo6,
 }];
 
 const cardComponents = {

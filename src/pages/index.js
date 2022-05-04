@@ -71,16 +71,17 @@ popupFormAddCard.setEventListeners()
 // Форма редактирования профиля.
 const userInfo = new UserInfo(profileElements)
 
-const popupFormEditProfile = new PopupWithForm(popupEditSectionElement, () => {
-  userInfo.setUserInfo(popupEditNameInput, popupEditAboutInput);
-})
+const popupFormEditProfile = new PopupWithForm(popupEditSectionElement, handleSubmitForm => {
+    userInfo.setUserInfo(handleSubmitForm);
+  }
+)
 
 popupFormEditProfile.setEventListeners();
 
 // Слушатели
 popupAddButtonElement.addEventListener("click", () => {
-  popupFormAddCard.open();
   popupAddSectionValidation.resetValidation();
+  popupFormAddCard.open();
 });
 
 popupEditButtonElement.addEventListener('click', () => {

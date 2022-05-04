@@ -16,7 +16,7 @@ const popupEditButtonElement = document.querySelector(".profile__edit-button");
 const popupAddButtonElement = document.querySelector(".profile__add-button");
 
 // --Edit Popup--
-const popupEditSectionElement = ".popup-edit-profile"
+const popupEditSectionElement = ".popup-edit-profile";
 const popupEditNameInput = document.querySelector(".popup__text-input_type_name");
 const popupEditAboutInput = document.querySelector(".popup__text-input_type_about");
 

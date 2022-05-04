@@ -6,7 +6,7 @@ export class FormValidator {
     this._button = data.submitButtonSelector;
     this._inactiveButton = data.inactiveButtonClass;
 
-    this._formElement = formElement;
+    this._formElement = document.querySelector(formElement);
     this._inputList = Array.from(this._formElement.querySelectorAll(this._input));
     this._buttonElement = this._formElement.querySelector(this._button);
   }

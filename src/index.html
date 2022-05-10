@@ -81,7 +81,10 @@
   <li class="photo-gallery__item">
     <img src="images" alt="Фотография загруженная пользователем «{title}»" class="photo-gallery__image">
     <h2 class="photo-gallery__title"></h2>
-    <button class="photo-gallery__like-button button-action"></button>
+    <div class="photo-gallery__like-section">
+      <button class="photo-gallery__like-button button-action"></button>
+      <p class="photo-gallery__like-counter">0</p>
+    </div>
     <a class="photo-gallery__delete-button button-action"><img src="<%=require('./images/trash.svg')%>" alt="Корзина удаления"></a>
   </li>
 </template>

@@ -15,7 +15,6 @@ import {
 
   photoGalleryItemTemplateSelector,
   cardListSelector,
-  cardItems,
   cardComponents,
   formComponents
 } from '../utils/constants.js';
@@ -89,14 +88,19 @@ popupFormAddCard.setEventListeners()
 const userInfo = new UserInfo(profileElements)
 
 const popupFormEditProfile = new PopupWithForm(popupEditSectionElement, values => {
-  api.getUserInfo(values)
+  api.setUserInfo(values)
     .then((data) => {
       userInfo.setUserInfo(data)
     })
     .catch((err) => console.log(err));
-
   }
 )
+
+api.getUserData()
+  .then(values => {
+    userInfo.setUserInfo(values)
+  })
+  .catch(err => {console.log(err)})
 
 popupFormEditProfile.setEventListeners();
 
@@ -107,7 +111,7 @@ popupAddButtonElement.addEventListener("click", () => {
 });
 
 popupEditButtonElement.addEventListener('click', () => {
-  const userData = userInfo.getUserInfo();
+  const userData = userInfo.getUserValues();
   popupEditNameInput.value = userData.name;
   popupEditAboutInput.value = userData.about;
   popupEditSectionValidation.resetValidation();

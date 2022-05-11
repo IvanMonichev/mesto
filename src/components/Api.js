@@ -12,10 +12,22 @@ export class Api {
     return Promise.reject(`Ошибка № ${res.ok} – ${res.status}`)
   }
 
-  getUserInfo() {
+  getUserData() {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
       headers: this._headers
+    })
+      .then(this._errorHandle)
+  }
+
+  setUserInfo(userInfo) {
+    return fetch(`${this._url}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: userInfo.name,
+        about: userInfo.about
+      })
     })
       .then(this._errorHandle)
   }

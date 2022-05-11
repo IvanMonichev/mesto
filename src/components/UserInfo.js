@@ -4,7 +4,7 @@ export class UserInfo {
     this._userAbout = document.querySelector(profileSelectors.about);
   }
 
-  getUserInfo() {
+  getUserValues() {
     this._userData = {
       name: this._userName.textContent,
       about: this._userAbout.textContent

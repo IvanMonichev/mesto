@@ -1,4 +1,4 @@
-export default class Api {
+export class Api {
   constructor(configuration) {
     this._url = configuration.url
     this._headers = configuration.headers
@@ -13,7 +13,15 @@ export default class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this._url}/user/me`, {
+    return fetch(`${this._url}/users/me`, {
+      method: "GET",
+      headers: this._headers
+    })
+      .then(this._errorHandle)
+  }
+
+  getInitialCards() {
+    return fetch(`${this._url}/cards`, {
       method: "GET",
       headers: this._headers
     })

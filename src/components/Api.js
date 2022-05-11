@@ -5,7 +5,7 @@ export class Api {
   }
 
   _errorHandle(res) {
-    if(res.ok) {
+    if (res.ok) {
       return res.json();
     }
 
@@ -39,4 +39,17 @@ export class Api {
     })
       .then(this._errorHandle)
   }
+
+  addCard(card) {
+    return fetch(`${this._url}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: card.name,
+        link: card.link
+      })
+    })
+      .then(this._errorHandle)
+  }
+
 }

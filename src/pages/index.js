@@ -37,8 +37,6 @@ const api = new Api({
   }
 })
 
-
-
 const popupImage = new PopupWithImage(popupImageSectionElement);
 popupImage.setEventListeners()
 
@@ -76,9 +74,13 @@ popupEditSectionValidation.enableValidation();
 popupAddSectionValidation.enableValidation();
 
 // Форма добавления карточки.
-const popupFormAddCard = new PopupWithForm(popupAddSectionElement, handleSubmitForm => {
-    const card = createCard(handleSubmitForm);
-    cardList.addItem(card);
+const popupFormAddCard = new PopupWithForm(popupAddSectionElement, card => {
+  api.addCard(card)
+    .then(data => {
+      const card = createCard(data);
+      cardList.addItem(card);
+    })
+    .catch(err => console.log(err));
   }
 )
 

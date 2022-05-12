@@ -13,7 +13,7 @@ export class Card {
     this._cardImageSelector = cardComponents.cardImageSelector;
     this._titleSelector = cardComponents.titleSelector;
 
-    this._handleDelete = this._handleDelete.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
 
     this._userID = userID;
     this._ownerID = data.owner._id;
@@ -49,10 +49,9 @@ export class Card {
     return this._element;
   }
 
-  _handleDelete() {
+  handleDelete() {
     this._element.remove();
     this._element = null;
-
   }
 
   _toggleButtonLike() {

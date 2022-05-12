@@ -55,7 +55,12 @@ const createCard = (data) => {
     },
     handleDeleteClick: () => {
       popupDeleteCard.open()
-
+      popupDeleteCard.setSubmitProcessing(() => {
+        api.deleteCard(data._id)
+          .then()
+          .catch(err => console.log(err));
+        card.handleDelete();
+      })
     }
   },
     cardComponents,
@@ -111,7 +116,7 @@ const popupFormEditProfile = new PopupWithForm(popupEditSectionElement, values =
   }
 )
 
-let userID;
+let userID; // Переменная для сохранения ID пользователя.
 
 api.getUserData()
   .then(data => {

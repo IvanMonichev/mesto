@@ -9,7 +9,7 @@ export class Api {
       return res.json();
     }
 
-    return Promise.reject(`Ошибка № ${res.ok} – ${res.status}`)
+    return Promise.reject(`Ошибка № ${res.status} (${res.ok})`)
   }
 
   getUserData() {

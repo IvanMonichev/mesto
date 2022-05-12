@@ -44,10 +44,8 @@ const api = new Api({
 const popupImage = new PopupWithImage(popupImageSectionSelector);
 popupImage.setEventListeners()
 
-
 const popupDeleteCard = new Popup(popupDeleteCardSelector);
 popupDeleteCard.setEventListeners()
-
 
 // Создание карточки
 const createCard = (data) => {
@@ -59,7 +57,10 @@ const createCard = (data) => {
     handleDeleteClick: () => {
       popupDeleteCard.open()
     }
-  }, cardComponents, photoGalleryItemTemplateSelector);
+  },
+    cardComponents,
+    photoGalleryItemTemplateSelector,
+    userID);
   return card.generateCard();
 }
 
@@ -110,9 +111,12 @@ const popupFormEditProfile = new PopupWithForm(popupEditSectionElement, values =
   }
 )
 
+let userID;
+
 api.getUserData()
-  .then(values => {
-    userInfo.setUserInfo(values)
+  .then(data => {
+    userInfo.setUserInfo(data);
+    userID = data._id;
   })
   .catch(err => {console.log(err)})
 

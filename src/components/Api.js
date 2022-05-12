@@ -32,7 +32,7 @@ export class Api {
       .then(this._errorHandle)
   }
 
-  getInitialCards() {
+  getCardsData() {
     return fetch(`${this._url}/cards`, {
       method: "GET",
       headers: this._headers
@@ -57,6 +57,22 @@ export class Api {
       method: "DELETE",
       headers: this._headers
       })
+      .then(this._errorHandle)
+  }
+
+  likeCard(id) {
+    return fetch(`${this._url}/cards/${id}/likes`, {
+      method: "PUT",
+      headers: this._headers
+    })
+      .then(this._errorHandle)
+  }
+
+  dislikeCard(id) {
+    return fetch(`${this._url}/cards/${id}/likes`, {
+      method: "DELETE",
+      headers: this._headers
+    })
       .then(this._errorHandle)
   }
 

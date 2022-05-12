@@ -31,7 +31,8 @@ const cardComponents = {
   likeSelector: '.photo-gallery__like-button',
   deleteSelector: '.photo-gallery__delete-button',
   cardImageSelector: '.photo-gallery__image',
-  titleSelector: '.photo-gallery__title'
+  titleSelector: '.photo-gallery__title',
+  likeCounterSelector: '.photo-gallery__like-counter'
 }
 
 /* Validation */

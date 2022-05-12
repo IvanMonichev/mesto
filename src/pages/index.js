@@ -65,7 +65,8 @@ const createCard = (data) => {
   },
     cardComponents,
     photoGalleryItemTemplateSelector,
-    userID);
+    userID,
+    api);
   return card.generateCard();
 }
 
@@ -78,7 +79,7 @@ const cardList = new Section({
 }, cardListSelector)
 
 // Перебрасываем данные через метод для генерации
-api.getInitialCards()
+api.getCardsData()
   .then((cardsData) => {
     cardList.render(cardsData)
   })

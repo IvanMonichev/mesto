@@ -52,4 +52,12 @@ export class Api {
       .then(this._errorHandle)
   }
 
+  deleteCard(id) {
+    return fetch(`${this._url}/cards/card${id}`, {
+      method: "DELETE",
+      headers: this._headers
+      })
+      .then(this._errorHandle)
+  }
+
 }

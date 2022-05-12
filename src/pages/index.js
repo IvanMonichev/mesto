@@ -24,7 +24,6 @@ import {
 import {Card} from '../components/Card.js'
 import {FormValidator} from '../components/FormValidator.js'
 import {Section} from "../components/Section.js";
-import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupDeleteForm from "../components/PopupDeleteForm.js";
@@ -44,7 +43,7 @@ const api = new Api({
 const popupImage = new PopupWithImage(popupImageSectionSelector);
 popupImage.setEventListeners()
 
-const popupDeleteCard = new Popup(popupDeleteCardSelector);
+const popupDeleteCard = new PopupDeleteForm(popupDeleteCardSelector);
 popupDeleteCard.setEventListeners()
 
 // Создание карточки
@@ -56,6 +55,7 @@ const createCard = (data) => {
     },
     handleDeleteClick: () => {
       popupDeleteCard.open()
+
     }
   },
     cardComponents,

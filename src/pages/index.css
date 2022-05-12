@@ -13,12 +13,15 @@
 
 /* Section Profile */
 @import url(../blocks/profile/profile.css);
-@import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__title/profile__title.css);
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
+
+@import url(../blocks/profile-avatar/profile-avatar.css);
+@import url(../blocks/profile-avatar/__image/profile-avatar__image.css);
+@import url(../blocks/profile-avatar/__edit-avatar/profile-avatar__edit-avatar.css);
 
 /* Section Photo Gallery */
 @import url(../blocks/photo-gallery/photo-gallery.css);

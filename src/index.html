@@ -19,7 +19,12 @@
 
 <main class="main">
   <section class="profile">
-    <img src="<%=require('./images/avatar.png')%>" alt="Аватар профиля" class="profile__avatar">
+    <div class="profile-avatar">
+      <img src="<%=require('./images/avatar.png')%>" alt="Аватар профиля" class="profile-avatar__image">
+      <button class="profile-avatar__edit-avatar"></button>
+    </div>
+
+
     <div class="profile__info">
       <h1 class="profile__title"></h1>
       <button class="profile__edit-button button-action"></button>

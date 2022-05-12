@@ -15,15 +15,17 @@ const popupEditAboutInput = document.querySelector(".popup__text-input_type_abou
 
 
 // --Add Popup--
-const popupAddSectionElement = ".popup-add-card"
-const popupAddFormElement = document.querySelector(".popup__container");
+const popupAddSectionSelector = ".popup-add-card";
+
+// --Delete Card Popup--
+const popupDeleteCardSelector = ".popup-delete-card";
 
 /* --Gallery-- */
 const photoGalleryItemTemplateSelector = ".photo-gallery__item-template";
 const cardListSelector = ".photo-gallery__list";
 
 /* Popup Image */
-const popupImageSectionElement = '.image-zoom';
+const popupImageSectionSelector = '.image-zoom';
 
 const cardComponents = {
   likeSelector: '.photo-gallery__like-button',
@@ -51,12 +53,12 @@ export {
   popupEditNameInput,
   popupEditAboutInput,
 
-  popupAddSectionElement,
-  popupAddFormElement,
+  popupAddSectionSelector,
+  popupDeleteCardSelector,
 
   photoGalleryItemTemplateSelector,
   cardListSelector,
-  popupImageSectionElement,
+  popupImageSectionSelector,
 
   cardComponents,
   formComponents

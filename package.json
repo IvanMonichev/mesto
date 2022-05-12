@@ -4,7 +4,7 @@
   "description": "Educational project",
   "main": "babel.config.js",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack --mode development",
     "dev": "webpack serve"
   },
   "repository": {

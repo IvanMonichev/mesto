@@ -1,11 +1,12 @@
 export class Card {
 
-  constructor({data,  handleCardClick }, cardComponents, templateSelector) {
+  constructor({data,  handleCardClick, handleDeleteClick }, cardComponents, templateSelector) {
     this._templateContent = document.querySelector(templateSelector).content;
     this._name = data.name;
     this._link = data.link;
 
     this._handleCardClick = handleCardClick;
+    this._handleDeleteClick = handleDeleteClick;
     
     this._likeSelector = cardComponents.likeSelector;
     this._deleteSelector = cardComponents.deleteSelector;
@@ -51,7 +52,7 @@ export class Card {
     this._deleteButtonElement = this._element.querySelector(this._deleteSelector);
     this._likeButtonElement = this._element.querySelector(this._likeSelector);
 
-    this._deleteButtonElement.addEventListener('click', this._handleDelete);
+    this._deleteButtonElement.addEventListener('click', () => this._handleDeleteClick());
     this._likeButtonElement.addEventListener('click', () => this._toggleButtonLike());
     this._cardImageElement.addEventListener('click', () => this._handleCardClick({name: this._name, link: this._link}));
   }

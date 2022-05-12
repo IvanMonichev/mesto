@@ -9,9 +9,11 @@ import {
   popupEditNameInput,
   popupEditAboutInput,
 
-  popupAddSectionElement,
+  popupAddSectionSelector,
 
-  popupImageSectionElement,
+  popupDeleteCardSelector,
+
+  popupImageSectionSelector,
 
   photoGalleryItemTemplateSelector,
   cardListSelector,
@@ -22,8 +24,10 @@ import {
 import {Card} from '../components/Card.js'
 import {FormValidator} from '../components/FormValidator.js'
 import {Section} from "../components/Section.js";
+import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupDeleteForm from "../components/PopupDeleteForm.js";
 import {UserInfo} from "../components/UserInfo.js";
 import {Api} from "../components/Api.js";
 
@@ -37,8 +41,13 @@ const api = new Api({
   }
 })
 
-const popupImage = new PopupWithImage(popupImageSectionElement);
+const popupImage = new PopupWithImage(popupImageSectionSelector);
 popupImage.setEventListeners()
+
+
+const popupDeleteCard = new Popup(popupDeleteCardSelector);
+popupDeleteCard.setEventListeners()
+
 
 // Создание карточки
 const createCard = (data) => {
@@ -46,6 +55,9 @@ const createCard = (data) => {
     data: data,
     handleCardClick: () => {
       popupImage.open(data);
+    },
+    handleDeleteClick: () => {
+      popupDeleteCard.open()
     }
   }, cardComponents, photoGalleryItemTemplateSelector);
   return card.generateCard();
@@ -68,13 +80,13 @@ api.getInitialCards()
 
 // Установка валидации.
 const popupEditSectionValidation = new FormValidator(popupEditSectionElement, formComponents);
-const popupAddSectionValidation = new FormValidator(popupAddSectionElement, formComponents);
+const popupAddSectionValidation = new FormValidator(popupAddSectionSelector, formComponents);
 
 popupEditSectionValidation.enableValidation();
 popupAddSectionValidation.enableValidation();
 
 // Форма добавления карточки.
-const popupFormAddCard = new PopupWithForm(popupAddSectionElement, card => {
+const popupFormAddCard = new PopupWithForm(popupAddSectionSelector, card => {
   api.addCard(card)
     .then(data => {
       const card = createCard(data);

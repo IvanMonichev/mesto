@@ -42,12 +42,16 @@ const api = new Api({
   }
 })
 
-const popupImage = new PopupWithImage(popupImageSectionSelector);
-popupImage.setEventListeners()
 
-const popupDeleteCard = new PopupDeleteForm(popupDeleteCardSelector);
-popupDeleteCard.setEventListeners()
+const userInfo = new UserInfo(profileElements);
+let userID; // Переменная для сохранения ID пользователя.
 
+api.getUserData()
+  .then(data => {
+    userInfo.setUserInfo(data);
+    userID = data._id;
+  })
+  .catch(err => console.log(err))
 
 // Создание карточки
 const createCard = (data) => {
@@ -87,61 +91,36 @@ api.getCardsData()
     cardList.render(cardsData)
   }).catch(err => console.log(err))
 
+const popupImage = new PopupWithImage(popupImageSectionSelector);
+popupImage.setEventListeners()
 
-
-// Установка валидации.
-const popupEditSectionValidation = new FormValidator(popupEditSectionSelector, formComponents);
-const popupAddSectionValidation = new FormValidator(popupAddSectionSelector, formComponents);
-const popupEditAvatarValidation = new FormValidator(popupEditAvatarSelector, formComponents);
-
-
-popupEditSectionValidation.enableValidation();
-popupAddSectionValidation.enableValidation();
-popupEditAvatarValidation.enableValidation();
-
-// Форма добавления карточки.
 const popupFormAddCard = new PopupWithForm(popupAddSectionSelector, card => {
-  popupFormAddCard.renderLoading(true)
-  api.addCard(card)
-    .then(data => {
-      const card = createCard(data);
-      cardList.addItem(card);
-    })
-    .catch(err => console.log(err))
-    .then(() => popupFormAddCard.renderLoading(false));
+    popupFormAddCard.renderLoading(true)
+    api.addCard(card)
+      .then(data => {
+        const card = createCard(data);
+        cardList.addItem(card);
+      })
+      .catch(err => console.log(err))
+      .then(() => popupFormAddCard.renderLoading(false));
   }
 )
-
-popupFormAddCard.setEventListeners()
-
-// Форма редактирования профиля.
-const userInfo = new UserInfo(profileElements);
 
 const popupFormEditProfile = new PopupWithForm(popupEditSectionSelector, values => {
-  popupFormEditProfile.renderLoading(true)
-  api.setUserInfo(values)
-    .then((data) => {
-      userInfo.setUserInfo(data)
-    })
-    .catch((err) => console.log(err))
-    .finally(() => {
-      popupFormEditProfile.renderLoading(false)
-    })
+    popupFormEditProfile.renderLoading(true)
+    api.setUserInfo(values)
+      .then((data) => {
+        userInfo.setUserInfo(data)
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        popupFormEditProfile.renderLoading(false)
+      })
   }
 )
 
-let userID; // Переменная для сохранения ID пользователя.
+const popupDeleteCard = new PopupDeleteForm(popupDeleteCardSelector);
 
-api.getUserData()
-  .then(data => {
-    userInfo.setUserInfo(data);
-    userID = data._id;
-  })
-  .catch(err => console.log(err))
-
-popupFormEditProfile.setEventListeners();
-
-// Форма редактирования аватара.
 const popupFormEditAvatar = new PopupWithForm(popupEditAvatarSelector, (link) => {
   popupFormEditAvatar.renderLoading(true);
   api.editAvatar(link)
@@ -152,9 +131,24 @@ const popupFormEditAvatar = new PopupWithForm(popupEditAvatarSelector, (link) =>
     .finally(() => popupFormEditAvatar.renderLoading(false))
 
 });
+
+// Установка слушателей на формы.
+popupDeleteCard.setEventListeners();
+popupFormAddCard.setEventListeners();
+popupFormEditProfile.setEventListeners();
 popupFormEditAvatar.setEventListeners();
 
-// Слушатели
+// Установка валидации.
+const popupEditSectionValidation = new FormValidator(popupEditSectionSelector, formComponents);
+const popupAddSectionValidation = new FormValidator(popupAddSectionSelector, formComponents);
+const popupEditAvatarValidation = new FormValidator(popupEditAvatarSelector, formComponents);
+
+popupEditSectionValidation.enableValidation();
+popupAddSectionValidation.enableValidation();
+popupEditAvatarValidation.enableValidation();
+
+
+// Колбэки на вызов форм.
 popupAddButtonElement.addEventListener("click", () => {
   popupAddSectionValidation.resetValidation();
   popupFormAddCard.open();

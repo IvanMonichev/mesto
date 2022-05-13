@@ -101,12 +101,14 @@ popupEditAvatarValidation.enableValidation();
 
 // Форма добавления карточки.
 const popupFormAddCard = new PopupWithForm(popupAddSectionSelector, card => {
+  popupFormAddCard.renderLoading(true)
   api.addCard(card)
     .then(data => {
       const card = createCard(data);
       cardList.addItem(card);
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
+    .then(() => popupFormAddCard.renderLoading(false));
   }
 )
 
@@ -116,11 +118,15 @@ popupFormAddCard.setEventListeners()
 const userInfo = new UserInfo(profileElements);
 
 const popupFormEditProfile = new PopupWithForm(popupEditSectionSelector, values => {
+  popupFormEditProfile.renderLoading(true)
   api.setUserInfo(values)
     .then((data) => {
       userInfo.setUserInfo(data)
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err))
+    .finally(() => {
+      popupFormEditProfile.renderLoading(false)
+    })
   }
 )
 
@@ -137,12 +143,14 @@ popupFormEditProfile.setEventListeners();
 
 // Форма редактирования аватара.
 const popupFormEditAvatar = new PopupWithForm(popupEditAvatarSelector, (link) => {
+  popupFormEditAvatar.renderLoading(true);
   api.editAvatar(link)
     .then((data) => {
       console.log(data);
       userInfo.setUserAvatar(data);
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
+    .finally(() => popupFormEditAvatar.renderLoading(false))
 
 });
 popupFormEditAvatar.setEventListeners();

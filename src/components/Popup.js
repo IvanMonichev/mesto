@@ -32,10 +32,4 @@ export default class Popup {
     closeButton.addEventListener('click', () => {this.close()});
     this._popupElement.addEventListener('click', (event) => {this._handleOverlayClose(event)})
   }
-
-  renderLoading(isLoading) {
-    if(isLoading) {
-
-    }
-  }
 }

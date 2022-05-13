@@ -7,6 +7,7 @@
   top: 0;
   left: 0;
   border: none;
+  outline: none;
   padding: 0;
   background: url(../../../images/pancil.svg) no-repeat 50%;
   background-size: 26px;

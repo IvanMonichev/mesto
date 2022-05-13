@@ -2,23 +2,24 @@
 
 const profileElements = {
   name: ".profile__title",
-  about: ".profile__subtitle"
+  about: ".profile__subtitle",
+  avatar: ".profile-avatar__image"
 }
 
 const popupEditButtonElement = document.querySelector(".profile__edit-button");
 const popupAddButtonElement = document.querySelector(".profile__add-button");
+const popupEditAvatarButtonElement = document.querySelector(".profile-avatar__edit-avatar");
 
 // --Edit Popup--
-const popupEditSectionElement = ".popup-edit-profile";
+const popupEditSectionSelector = ".popup-edit-profile";
 const popupEditNameInput = document.querySelector(".popup__text-input_type_name");
 const popupEditAboutInput = document.querySelector(".popup__text-input_type_about");
 
 
-// --Add Popup--
+// Popup selectors
 const popupAddSectionSelector = ".popup-add-card";
-
-// --Delete Card Popup--
 const popupDeleteCardSelector = ".popup-delete-card";
+const popupEditAvatarSelector = ".popup-edit-avatar";
 
 /* --Gallery-- */
 const photoGalleryItemTemplateSelector = ".photo-gallery__item-template";
@@ -49,10 +50,12 @@ export {
 
   popupEditButtonElement,
   popupAddButtonElement,
+  popupEditAvatarButtonElement,
 
-  popupEditSectionElement,
+  popupEditSectionSelector,
   popupEditNameInput,
   popupEditAboutInput,
+  popupEditAvatarSelector,
 
   popupAddSectionSelector,
   popupDeleteCardSelector,

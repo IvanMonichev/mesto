@@ -4,10 +4,12 @@ import {
   profileElements,
   popupEditButtonElement,
   popupAddButtonElement,
+  popupEditAvatarButtonElement,
 
-  popupEditSectionElement,
+  popupEditSectionSelector,
   popupEditNameInput,
   popupEditAboutInput,
+  popupEditAvatarSelector,
 
   popupAddSectionSelector,
 
@@ -46,6 +48,7 @@ popupImage.setEventListeners()
 const popupDeleteCard = new PopupDeleteForm(popupDeleteCardSelector);
 popupDeleteCard.setEventListeners()
 
+
 // Создание карточки
 const createCard = (data) => {
   const card = new Card({
@@ -82,15 +85,19 @@ const cardList = new Section({
 api.getCardsData()
   .then((cardsData) => {
     cardList.render(cardsData)
-  })
+  }).catch(err => console.log(err))
+
 
 
 // Установка валидации.
-const popupEditSectionValidation = new FormValidator(popupEditSectionElement, formComponents);
+const popupEditSectionValidation = new FormValidator(popupEditSectionSelector, formComponents);
 const popupAddSectionValidation = new FormValidator(popupAddSectionSelector, formComponents);
+const popupEditAvatarValidation = new FormValidator(popupEditAvatarSelector, formComponents);
+
 
 popupEditSectionValidation.enableValidation();
 popupAddSectionValidation.enableValidation();
+popupEditAvatarValidation.enableValidation();
 
 // Форма добавления карточки.
 const popupFormAddCard = new PopupWithForm(popupAddSectionSelector, card => {
@@ -106,9 +113,9 @@ const popupFormAddCard = new PopupWithForm(popupAddSectionSelector, card => {
 popupFormAddCard.setEventListeners()
 
 // Форма редактирования профиля.
-const userInfo = new UserInfo(profileElements)
+const userInfo = new UserInfo(profileElements);
 
-const popupFormEditProfile = new PopupWithForm(popupEditSectionElement, values => {
+const popupFormEditProfile = new PopupWithForm(popupEditSectionSelector, values => {
   api.setUserInfo(values)
     .then((data) => {
       userInfo.setUserInfo(data)
@@ -124,9 +131,21 @@ api.getUserData()
     userInfo.setUserInfo(data);
     userID = data._id;
   })
-  .catch(err => {console.log(err)})
+  .catch(err => console.log(err))
 
 popupFormEditProfile.setEventListeners();
+
+// Форма редактирования аватара.
+const popupFormEditAvatar = new PopupWithForm(popupEditAvatarSelector, (link) => {
+  api.editAvatar(link)
+    .then((data) => {
+      console.log(data);
+      userInfo.setUserAvatar(data);
+    })
+    .catch(err => console.log(err));
+
+});
+popupFormEditAvatar.setEventListeners();
 
 // Слушатели
 popupAddButtonElement.addEventListener("click", () => {
@@ -142,3 +161,7 @@ popupEditButtonElement.addEventListener('click', () => {
   popupFormEditProfile.open();
 })
 
+popupEditAvatarButtonElement.addEventListener('click', () => {
+  popupEditAvatarValidation.resetValidation();
+  popupFormEditAvatar.open();
+})

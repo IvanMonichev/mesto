@@ -20,7 +20,7 @@
 <main class="main">
   <section class="profile">
     <div class="profile-avatar">
-      <img src="<%=require('./images/avatar.png')%>" alt="Аватар профиля" class="profile-avatar__image">
+      <img src="#" alt="Аватар профиля" class="profile-avatar__image">
       <button class="profile-avatar__edit-avatar"></button>
     </div>
 
@@ -75,6 +75,17 @@
   <form class="popup__container" novalidate>
     <h2 class="popup__title">Вы уверены?</h2>
     <button class="popup__save-button button-action">Да</button>
+    <button type="button" class="popup__close-button button-action"></button>
+  </form>
+</section>
+
+<section class="popup popup-edit-avatar">
+  <form class="popup__container" novalidate>
+    <h2 class="popup__title">Обновить аватар</h2>
+    <input type="url" id="avatar-input" class="popup__text-input popup__text-input_type_avatar" name="avatar"
+           placeholder="Ссылка на аватар" required>
+    <span class="popup__input-error avatar-input-error">Ошибка</span>
+    <button class="popup__save-button button-action">Сохранить</button>
     <button type="button" class="popup__close-button button-action"></button>
   </form>
 </section>

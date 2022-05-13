@@ -146,7 +146,6 @@ const popupFormEditAvatar = new PopupWithForm(popupEditAvatarSelector, (link) =>
   popupFormEditAvatar.renderLoading(true);
   api.editAvatar(link)
     .then((data) => {
-      console.log(data);
       userInfo.setUserAvatar(data);
     })
     .catch(err => console.log(err))

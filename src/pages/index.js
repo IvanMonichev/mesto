@@ -102,6 +102,7 @@ const popupFormAddCard = new PopupWithForm(popupAddSectionSelector, card => {
       .then(data => {
         const card = createCard(data);
         cardList.addItem(card);
+        popupFormAddCard.reset();
         popupFormAddCard.close();
       })
       .catch(err => console.log(err))

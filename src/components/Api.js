@@ -87,5 +87,8 @@ export class Api {
       .then(this._errorHandle)
   }
 
+  getAllData() {
+    return Promise.all([this.getUserData(), this.getCardsData()])
+  }
 
 }

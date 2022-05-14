@@ -80,16 +80,16 @@ export class Card {
       this._api.likeCard(this._cardID)
         .then(data => {
           this._likeCounterElement.textContent = data.likes.length;
+          this._likeButtonElement.classList.add('photo-gallery__like-button_active');
         })
         .catch(err => console.log(err))
-      this._likeButtonElement.classList.add('photo-gallery__like-button_active');
     } else {
       this._api.dislikeCard(this._cardID)
         .then(data => {
           this._likeCounterElement.textContent = data.likes.length;
+          this._likeButtonElement.classList.remove('photo-gallery__like-button_active');
         })
         .catch(err => console.log(err))
-      this._likeButtonElement.classList.remove('photo-gallery__like-button_active');
     }
 
   }

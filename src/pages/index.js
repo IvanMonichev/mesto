@@ -46,13 +46,6 @@ const api = new Api({
 const userInfo = new UserInfo(profileElements);
 let userID; // Переменная для сохранения ID пользователя.
 
-api.getUserData()
-  .then(data => {
-    userInfo.setUserInfo(data);
-    userID = data._id;
-  })
-  .catch(err => console.log(err))
-
 // Создание карточки
 const createCard = (data) => {
   const card = new Card({
@@ -63,10 +56,14 @@ const createCard = (data) => {
     handleDeleteClick: () => {
       popupDeleteCard.open()
       popupDeleteCard.setSubmitProcessing(() => {
+        popupDeleteCard.renderLoading(true);
         api.deleteCard(data._id)
-          .then()
-          .catch(err => console.log(err));
-        card.handleDelete();
+          .then(() => {
+            card.handleDelete();
+            popupDeleteCard.close();
+          })
+          .catch(err => console.log(err))
+          .finally(() => popupDeleteCard.renderLoading(false));
       })
     }
   },
@@ -85,11 +82,16 @@ const cardList = new Section({
   }
 }, cardListSelector)
 
-// Перебрасываем данные через метод для генерации
-api.getCardsData()
-  .then((cardsData) => {
-    cardList.render(cardsData)
-  }).catch(err => console.log(err))
+
+api.getAllData()
+  .then(([userData, cardsData]) => {
+    userInfo.setUserInfo(userData)
+    userID = userData._id;
+    cardList.render(cardsData);
+  })
+  .catch(err => console.log(err))
+
+
 
 const popupImage = new PopupWithImage(popupImageSectionSelector);
 popupImage.setEventListeners()
@@ -100,6 +102,7 @@ const popupFormAddCard = new PopupWithForm(popupAddSectionSelector, card => {
       .then(data => {
         const card = createCard(data);
         cardList.addItem(card);
+        popupFormAddCard.close();
       })
       .catch(err => console.log(err))
       .then(() => popupFormAddCard.renderLoading(false));
@@ -110,7 +113,8 @@ const popupFormEditProfile = new PopupWithForm(popupEditSectionSelector, values 
     popupFormEditProfile.renderLoading(true)
     api.setUserInfo(values)
       .then((data) => {
-        userInfo.setUserInfo(data)
+        userInfo.setUserInfo(data);
+        popupFormEditProfile.close();
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -126,6 +130,7 @@ const popupFormEditAvatar = new PopupWithForm(popupEditAvatarSelector, (link) =>
   api.editAvatar(link)
     .then((data) => {
       userInfo.setUserAvatar(data);
+      popupFormEditAvatar.close();
     })
     .catch(err => console.log(err))
     .finally(() => popupFormEditAvatar.renderLoading(false))
